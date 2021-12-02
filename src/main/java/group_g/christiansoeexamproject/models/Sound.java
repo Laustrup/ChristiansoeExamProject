@@ -1,5 +1,8 @@
 package group_g.christiansoeexamproject.models;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Sound {
 
     private String filePath;

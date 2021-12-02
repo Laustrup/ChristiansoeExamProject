@@ -1,15 +1,26 @@
 package group_g.christiansoeexamproject.models;
-
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Animal {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String title;
     private String description;
-    private List<Image> images;
-    private List<Sound> sounds;
 
-    public Animal(String title, String description, List<Image> images, List<Sound> sounds){
+    @ElementCollection
+    private List<Object> images;
+    @ElementCollection
+    private List<Object> sounds;
+
+
+
+
+    public Animal(String title, String description, List<Object> images, List<Object> sounds){
         this.title = title;
         this.description = description;
         this.images = images;
@@ -37,19 +48,19 @@ public class Animal {
         this.description = description;
     }
 
-    public List<Image> getImage() {
+    public List<Object> getImage() {
         return images;
     }
 
-    public void setImage(List<Image> images) {
+    public void setImage(List<Object> images) {
         this.images = images;
     }
 
-    public List<Sound> getSound() {
+    public List<Object> getSound() {
         return sounds;
     }
 
-    public void setSound(List<Sound> sounds) {
+    public void setSound(List<Object> sounds) {
         this.sounds = sounds;
     }
 }

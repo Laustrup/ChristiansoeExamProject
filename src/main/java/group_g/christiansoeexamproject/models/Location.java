@@ -1,16 +1,25 @@
 package group_g.christiansoeexamproject.models;
-
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public abstract class Location {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     private String title;
     private String description;
-    private List<Image> images;
     private String longitude;
     private String latitude;
 
-    public Location(String title, String description, List<Image> images, String longitude, String latitude){
+    @ElementCollection
+    private List<Object> images;
+
+
+
+    public Location(String title, String description, List<Object> images, String longitude, String latitude){
         this.title = title;
         this.description = description;
         this.images = images;
@@ -39,11 +48,11 @@ public abstract class Location {
         this.description = description;
     }
 
-    public List<Image> getImages() {
+    public List<Object> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public void setImages(List<Object> images) {
         this.images = images;
     }
 
