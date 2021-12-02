@@ -1,6 +1,5 @@
 package group_g.christiansoeexamproject;
 
-import group_g.christiansoeexamproject.models.Location;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
