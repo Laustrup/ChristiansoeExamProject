@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <div id="map"></div>
+    <script>
+        let map = L.map('map').setView([55.3203,15.1877], 16)
+
+        let tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2Vvd2FsbCIsImEiOiJja3dvc28yeHkwNjBjMm9sMHB1NGlkdTJsIn0.-zQAF2T_9EOKLHEGnbUV4w', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+        }).addTo(map)
+    </script>
+</html>
