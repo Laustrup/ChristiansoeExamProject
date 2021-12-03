@@ -23,6 +23,10 @@ public class Image {
 
     }
 
+    public Long getId(){
+        return id;
+    }
+
     public String getFilePath() {
         return filePath;
     }

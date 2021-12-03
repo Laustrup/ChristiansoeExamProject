@@ -23,6 +23,9 @@ public class Attraction extends Location {
 
     }
 
+    public Long getId(){
+        return id;
+    }
 
     public List<Object> getAnimals() {
         return animals;
