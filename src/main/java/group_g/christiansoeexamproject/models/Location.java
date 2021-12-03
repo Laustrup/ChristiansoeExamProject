@@ -3,23 +3,28 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="location")
 public abstract class Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String title;
+    @Column
     private String description;
+    @Column
     private String longitude;
+    @Column
     private String latitude;
 
-    @ElementCollection
-    private List<Object> images;
+    @OneToMany
+    private List<Image> images;
 
 
 
-    public Location(String title, String description, List<Object> images, String longitude, String latitude){
+    public Location(String title, String description, List<Image> images, String longitude, String latitude){
         this.title = title;
         this.description = description;
         this.images = images;
@@ -51,11 +56,11 @@ public abstract class Location {
         this.description = description;
     }
 
-    public List<Object> getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(List<Object> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 

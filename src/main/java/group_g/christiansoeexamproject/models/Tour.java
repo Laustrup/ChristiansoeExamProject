@@ -1,18 +1,22 @@
 package group_g.christiansoeexamproject.models;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@Table(name="tour")
 public class Tour {
 
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String title;
+    @Column
     private String description;
+
+   @OneToMany
     private List<Location> locations;
 
     public Tour (String title, String description, List<Location> locations){
