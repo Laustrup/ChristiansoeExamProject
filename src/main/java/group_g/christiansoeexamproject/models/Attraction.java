@@ -1,13 +1,20 @@
 package group_g.christiansoeexamproject.models;
-
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Attraction extends Location {
 
-    private List<Animal> animals;
-    private List<Sound> sounds;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-    public Attraction (List<Animal> animals, List<Sound> sounds){
+    @ElementCollection
+    private List<Object> animals;
+    @ElementCollection
+    private List<Object> sounds;
+
+    public Attraction (List<Object> animals, List<Object> sounds){
         this.animals = animals;
         this.sounds = sounds;
     }
@@ -16,20 +23,23 @@ public class Attraction extends Location {
 
     }
 
+    public Long getId(){
+        return id;
+    }
 
-    public List<Animal> getAnimals() {
+    public List<Object> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(List<Animal> animals) {
+    public void setAnimals(List<Object> animals) {
         this.animals = animals;
     }
 
-    public List<Sound> getSounds() {
+    public List<Object> getSounds() {
         return sounds;
     }
 
-    public void setSounds(List<Sound> sounds) {
+    public void setSounds(List<Object> sounds) {
         this.sounds = sounds;
     }
 }
