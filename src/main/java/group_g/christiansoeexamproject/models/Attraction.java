@@ -3,18 +3,19 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="attraction")
 public class Attraction extends Location {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ElementCollection
-    private List<Object> animals;
-    @ElementCollection
-    private List<Object> sounds;
+    @OneToMany
+    private List<Animal> animals;
+    @OneToMany
+    private List<Sound> sounds;
 
-    public Attraction (List<Object> animals, List<Object> sounds){
+    public Attraction (List<Animal> animals, List<Sound> sounds){
         this.animals = animals;
         this.sounds = sounds;
     }
@@ -27,19 +28,19 @@ public class Attraction extends Location {
         return id;
     }
 
-    public List<Object> getAnimals() {
+    public List<Animal> getAnimals() {
         return animals;
     }
 
-    public void setAnimals(List<Object> animals) {
+    public void setAnimals(List<Animal> animals) {
         this.animals = animals;
     }
 
-    public List<Object> getSounds() {
+    public List<Sound> getSounds() {
         return sounds;
     }
 
-    public void setSounds(List<Object> sounds) {
+    public void setSounds(List<Sound> sounds) {
         this.sounds = sounds;
     }
 }

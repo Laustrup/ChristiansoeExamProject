@@ -3,24 +3,28 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name="animal")
 public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String title;
+    @Column
     private String description;
 
-    @ElementCollection
-    private List<Object> images;
-    @ElementCollection
-    private List<Object> sounds;
+
+    @OneToMany
+    private List<Image> images;
+    @OneToMany
+    private List<Sound> sounds;
 
 
 
 
-    public Animal(String title, String description, List<Object> images, List<Object> sounds){
+    public Animal(String title, String description, List<Image> images, List<Sound> sounds){
         this.title = title;
         this.description = description;
         this.images = images;
@@ -51,19 +55,19 @@ public class Animal {
         this.description = description;
     }
 
-    public List<Object> getImage() {
+    public List<Image> getImage() {
         return images;
     }
 
-    public void setImage(List<Object> images) {
+    public void setImage(List<Image> images) {
         this.images = images;
     }
 
-    public List<Object> getSound() {
+    public List<Sound> getSound() {
         return sounds;
     }
 
-    public void setSound(List<Object> sounds) {
+    public void setSound(List<Sound> sounds) {
         this.sounds = sounds;
     }
 }
