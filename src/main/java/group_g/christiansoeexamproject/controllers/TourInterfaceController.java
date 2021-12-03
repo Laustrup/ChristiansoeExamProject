@@ -18,7 +18,7 @@ public class TourInterfaceController {
     public TourInterfaceController(){
 
         //TODO: Needs to take wallet in parameter, when we figure out how
-        wallet = new Wallet();
+        //wallet = new Wallet();
     }
 
     @GetMapping("/tours")
