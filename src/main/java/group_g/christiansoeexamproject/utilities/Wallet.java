@@ -2,20 +2,51 @@ package group_g.christiansoeexamproject.utilities;
 
 import group_g.christiansoeexamproject.models.Location;
 import group_g.christiansoeexamproject.models.Tour;
+import group_g.christiansoeexamproject.repositories.LocationRepository;
+import group_g.christiansoeexamproject.repositories.TourRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Wallet {
 
-    private Map<String, Object> inbox = new HashMap<>();
+    private Map<String, Object> inbox;
 
-    // updates
+    private TourRepository tourRepo;
+    private LocationRepository locationRepo;
+
+    public Wallet(TourRepository tourRepo,LocationRepository locationRepo) {
+        this.tourRepo = tourRepo;
+        this.locationRepo = locationRepo;
+        inbox = new HashMap<>();
+        update();
+    }
+
+    public Wallet(TourRepository tourRepo,LocationRepository locationRepo,
+                  Map<String,Object> typeOfInbox) {
+        this.tourRepo = tourRepo;
+        this.locationRepo = locationRepo;
+        inbox = typeOfInbox;
+        update();
+    }
+
+    // Updates the inbox - Needs connection for the database
     public Map<String, Object> update() {
+        inbox.clear();
 
+        List<Tour> tours = tourRepo.findAll();
+        List<Location> locations = locationRepo.findAll();
 
+        // Puts the lists in the inbox as lists for iterable purposes
+        inbox.put("Tours",tours);
+        inbox.put("Locations",locations);
+
+        // Puts the lists from the database into the inbox as keys from the objects titles
+        for (int i = 0; i < tours.size();i++) {
+            inbox.put(tours.get(i).getTitle(),tours.get(i));
+        }
+        for (int i = 0; i < locations.size();i++) {
+            inbox.put(locations.get(i).getTitle(),locations.get(i));
+        }
 
         return inbox;
     }
@@ -40,24 +71,12 @@ public class Wallet {
 
     // Returns all tours
     public List<Tour> getAllTours() {
-        List<Tour> tours = new ArrayList<>();
-
-        for (int i = 0; i < inbox.size(); i++) {
-            if (inbox.containsKey("Tour"+i+1)) {tours.add((Tour) inbox.get("Tour"+i+1));}
-        }
-
-        return tours;
+        return (List<Tour>) inbox.get("Tours");
     }
 
     // Returns all locations
     public List<Location> getAllLocations() {
-        List<Location> locations = new ArrayList<>();
-
-        for (int i = 0; i < inbox.size(); i++) {
-            if (inbox.containsKey("Location"+i+1)) {locations.add((Location) inbox.get("Location"+i+1));}
-        }
-
-        return locations;
+        return (List<Location>) inbox.get("Locations");
     }
 
     public boolean has(Object value) {
