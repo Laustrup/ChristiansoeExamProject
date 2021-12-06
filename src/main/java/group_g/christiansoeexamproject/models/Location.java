@@ -13,7 +13,7 @@ public abstract class Location {
     @Column
     private String title;
     @Column
-    private String description;
+    private String report;
     @Column
     private String longitude;
     @Column
@@ -24,9 +24,9 @@ public abstract class Location {
 
 
 
-    public Location(String title, String description, List<Image> images, String longitude, String latitude){
+    public Location(String title, String report, List<Image> images, String longitude, String latitude){
         this.title = title;
-        this.description = description;
+        this.report = report;
         this.images = images;
         this.longitude = longitude;
         this.latitude = latitude;
@@ -48,12 +48,12 @@ public abstract class Location {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getReport() {
+        return report;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setReport(String report) {
+        this.report = report;
     }
 
     public List<Image> getImages() {

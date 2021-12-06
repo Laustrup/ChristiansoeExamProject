@@ -14,14 +14,14 @@ public class Tour {
     @Column
     private String title;
     @Column
-    private String description;
+    private String report;
 
    @OneToMany
     private List<Location> locations;
 
-    public Tour (String title, String description, List<Location> locations){
+    public Tour (String title, String report, List<Location> locations){
         this.title = title;
-        this.description = description;
+        this.report = report;
         this.locations = locations;
     }
 
@@ -41,12 +41,12 @@ public class Tour {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getReport() {
+        return report;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setReport(String report) {
+        this.report = report;
     }
 
     public List<Location> getLocations() {

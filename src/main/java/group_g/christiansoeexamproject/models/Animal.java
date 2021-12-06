@@ -13,7 +13,7 @@ public class Animal {
     @Column
     private String title;
     @Column
-    private String description;
+    private String report;
 
 
     @OneToMany
@@ -24,9 +24,9 @@ public class Animal {
 
 
 
-    public Animal(String title, String description, List<Image> images, List<Sound> sounds){
+    public Animal(String title, String report, List<Image> images, List<Sound> sounds){
         this.title = title;
-        this.description = description;
+        this.report = report;
         this.images = images;
         this.sounds = sounds;
     }
@@ -47,12 +47,12 @@ public class Animal {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getReport() {
+        return report;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setReport(String report) {
+        this.report = report;
     }
 
     public List<Image> getImage() {
