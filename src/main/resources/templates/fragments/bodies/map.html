@@ -1,6 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <div id="map"></div>
+
+    <div id="tourChooser" class="tourChooser">
+        <div class="tourList">
+            <table>
+                <tr>
+                    <th>Navn</th>
+                    <th>Beskrivelse</th>
+                </tr>
+                <tr>
+                    <td>Spøgelseturen</td>
+                    <td>Du bliver hjemsøgt, hvis du tager på denne faaaarlige tur</td>
+                </tr>
+                <tr>
+                    <td>Frøturen</td>
+                    <td>Elsker du frølyde? Hedder du Janus? Dette er turen for dig</td>
+                </tr>
+            </table>
+
+            <div class="modalBtnFlex">
+                <button id="selectTourBtn" class="modalBtn">Vælg tur</button>
+                <button id="closeTourChooser" class="modalBtn">Luk</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="flex-container">
+        <div id="map" class="map"></div>
+
+        <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+    </div>
+
+    <!--Script to show map -->
     <script>
         let map = L.map('map').setView([55.3203,15.1877], 16)
 
@@ -12,4 +44,19 @@
             zoomOffset: -1,
         }).addTo(map)
     </script>
+
+    <script>
+        let tourChooserModal = document.getElementById("tourChooser")
+        let tourChooserBtn = document.getElementById("tourBtn")
+
+        let closeTourChooserBtn = document.getElementById("closeTourChooser")
+
+        tourChooserBtn.onclick = () =>{
+            tourChooserModal.style.display = "flex"
+        }
+
+        closeTourChooserBtn.onclick = () => tourChooserModal.style.display = "none"
+
+    </script>
+
 </html>
