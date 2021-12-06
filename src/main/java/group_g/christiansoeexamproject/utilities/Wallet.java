@@ -21,8 +21,7 @@ public class Wallet {
         update();
     }
 
-    public Wallet(TourRepository tourRepo,LocationRepository locationRepo,
-                  Map<String,Object> typeOfInbox) {
+    public Wallet(TourRepository tourRepo,LocationRepository locationRepo, Map<String,Object> typeOfInbox) {
         this.tourRepo = tourRepo;
         this.locationRepo = locationRepo;
         inbox = typeOfInbox;
@@ -94,6 +93,13 @@ public class Wallet {
             return true;
         }
         return false;
+    }
+
+    public boolean doesExist(Object object) {
+        return inbox.containsValue(object);
+    }
+    public boolean doesExist(String key) {
+        return inbox.containsKey(key);
     }
 
 }
