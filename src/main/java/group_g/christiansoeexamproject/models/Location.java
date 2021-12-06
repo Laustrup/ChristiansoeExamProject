@@ -1,4 +1,6 @@
 package group_g.christiansoeexamproject.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -19,15 +21,21 @@ public abstract class Location {
     @Column
     private String latitude;
 
-    @OneToMany
+    @OneToMany(mappedBy = "location")
+    @JsonBackReference
     private List<Image> images;
 
+    @OneToMany(mappedBy = "location")
+    @JsonBackReference
+    private List<Sound> sounds;
+
+    @ManyToMany(mappedBy = "locations")
+    private List<Tour> tours;
 
 
-    public Location(String title, String report, List<Image> images, String longitude, String latitude){
+    public Location(String title, String report, String longitude, String latitude){
         this.title = title;
         this.report = report;
-        this.images = images;
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -56,14 +64,6 @@ public abstract class Location {
         this.report = report;
     }
 
-    public List<Image> getImages() {
-        return images;
-    }
-
-    public void setImages(List<Image> images) {
-        this.images = images;
-    }
-
     public String getLongitude() {
         return longitude;
     }
@@ -78,5 +78,29 @@ public abstract class Location {
 
     public void setLatitude(String latitude) {
         this.latitude = latitude;
+    }
+
+    public List<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(List<Image> images) {
+        this.images = images;
+    }
+
+    public List<Sound> getSounds(){
+        return sounds;
+    }
+
+    public void setSounds(List<Sound> sounds){
+        this.sounds = sounds;
+    }
+
+    public List<Tour> getTours(){
+        return tours;
+    }
+
+    public void setTours(List<Tour> tours){
+        this.tours = tours;
     }
 }

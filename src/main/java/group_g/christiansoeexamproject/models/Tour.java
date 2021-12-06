@@ -16,8 +16,10 @@ public class Tour {
     @Column
     private String report;
 
-   @OneToMany
+   @ManyToMany
+    @JoinColumn(name="tour_location")
     private List<Location> locations;
+
 
     public Tour (String title, String report, List<Location> locations){
         this.title = title;

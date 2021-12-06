@@ -1,5 +1,7 @@
 package group_g.christiansoeexamproject.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,6 +14,16 @@ public class Image {
 
     @Column(nullable = false)
     private String filePath;
+
+    @ManyToOne
+    @JoinColumn(name="image_animal")
+    @JsonManagedReference
+    private Animal animal;
+
+    @ManyToOne
+    @JoinColumn(name="image_location")
+    @JsonManagedReference
+    private Location location;
 
 
     public Image (String filePath){
@@ -32,5 +44,13 @@ public class Image {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public Animal getAnimal(){
+        return animal;
+    }
+
+    public Location getLocation(){
+        return location;
     }
 }

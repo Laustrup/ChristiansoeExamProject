@@ -1,4 +1,6 @@
 package group_g.christiansoeexamproject.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,10 +12,14 @@ public class Attraction extends Location {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToMany
+    @OneToMany(mappedBy = "images")
+    @JsonBackReference
     private List<Animal> animals;
-    @OneToMany
+
+    @OneToMany(mappedBy = "location")
+    @JsonBackReference
     private List<Sound> sounds;
+
 
     public Attraction (List<Animal> animals, List<Sound> sounds){
         this.animals = animals;

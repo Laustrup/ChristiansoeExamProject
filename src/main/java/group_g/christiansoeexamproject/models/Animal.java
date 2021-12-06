@@ -1,4 +1,6 @@
 package group_g.christiansoeexamproject.models;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,9 +18,12 @@ public class Animal {
     private String report;
 
 
-    @OneToMany
+    @OneToMany(mappedBy = "animal")
+    @JsonBackReference
     private List<Image> images;
-    @OneToMany
+
+    @OneToMany(mappedBy = "animal")
+    @JsonBackReference
     private List<Sound> sounds;
 
 

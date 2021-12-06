@@ -13,6 +13,14 @@ public class Sound {
     @Column(nullable = false)
     private String filePath;
 
+    @ManyToOne
+    @JoinColumn(name="sound_animal")
+    private Animal animal;
+
+    @ManyToOne
+    @JoinColumn(name="sound_location")
+    private Location location;
+
 
     public Sound (String filePath){
         this.filePath = filePath;
@@ -21,6 +29,7 @@ public class Sound {
     public Sound(){
 
     }
+
 
     public Long getId(){
         return id;
@@ -32,5 +41,21 @@ public class Sound {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+    }
+
+    public Animal getAnimal(){
+        return animal;
+    }
+
+    public void setAnimal(Animal animal) {
+        this.animal = animal;
+    }
+
+    public Location getLocation(){
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 }
