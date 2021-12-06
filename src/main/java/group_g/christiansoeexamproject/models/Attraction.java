@@ -5,11 +5,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="attraction")
 public class Attraction extends Location {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToMany(mappedBy = "images")
