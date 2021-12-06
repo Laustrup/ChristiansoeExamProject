@@ -17,9 +17,9 @@ public abstract class Location {
     @Column
     private String report;
     @Column
-    private String longitude;
+    private double longitude;
     @Column
-    private String latitude;
+    private double latitude;
 
     @OneToMany(mappedBy = "location")
     @JsonBackReference
@@ -33,9 +33,10 @@ public abstract class Location {
     private List<Tour> tours;
 
 
-    public Location(String title, String report, String longitude, String latitude){
+    public Location(String title, String report, double longitude, double latitude, List<Image> images){
         this.title = title;
         this.report = report;
+        this.images = images;
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -64,19 +65,19 @@ public abstract class Location {
         this.report = report;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 

@@ -21,7 +21,9 @@ public class Attraction extends Location {
     private List<Sound> sounds;
 
 
-    public Attraction (List<Animal> animals, List<Sound> sounds){
+    public Attraction (String title, String report, double longitude, double latitude,
+                        List<Animal> animals, List<Sound> sounds, List<Image> images){
+        super(title, report, longitude, latitude,images);
         this.animals = animals;
         this.sounds = sounds;
     }
