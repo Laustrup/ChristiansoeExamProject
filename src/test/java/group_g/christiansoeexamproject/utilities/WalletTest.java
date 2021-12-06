@@ -54,7 +54,12 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "", delimiter = '|')
+    @CsvSource(value = "Danmarks østligeste punkt,Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!," +
+                        "15.192853298391688,55.32029540616608,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg," +
+                        "Sæl,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav|" +
+
+                        "Badebro,Dette er en badebro!,15.183442624715434,55.32128710201616,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg," +
+                        "Sæl,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav", delimiter = '|')
     public void locationTest(String expectedTitle, String expectedReport,
                              double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
@@ -97,5 +102,7 @@ class WalletTest {
             assertEquals(expected.getImages().get(i).getFilePath(),actual.getImages().get(i).getFilePath());
         }
     }
+
+
 
 }
