@@ -1,8 +1,57 @@
-#map {
-    height: 700px;
-    width: 700px;
+.map {
+    height: 600px;
+    width: 30%;
+    z-index: 1;
 }
 
 .flex-container{
     display: flex;
+    margin: 10px;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.tourBtn{
+    height: 23px;
+    width: 100px;
+    margin: 10px;
+}
+
+
+.tourChooser{
+    display: none;
+    position: absolute;
+    float: left;
+    z-index: 2;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+}
+
+.tourList {
+    background-color: #fefefe;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #888;
+    justify-content: center;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+.modalBtnFlex {
+    display: flex;
+    flex-direction: row;
+}
+
+.modalBtn {
+    margin: 5px;
 }
