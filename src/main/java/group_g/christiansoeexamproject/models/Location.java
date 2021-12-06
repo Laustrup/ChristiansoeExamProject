@@ -32,7 +32,6 @@ public abstract class Location {
     @ManyToMany(mappedBy = "locations")
     private List<Tour> tours;
 
-
     public Location(String title, String report, double longitude, double latitude, List<Image> images){
         this.title = title;
         this.report = report;

@@ -3,10 +3,10 @@ USE christiansoe_db;
 
 INSERT INTO animal(title,report) VALUES ("Sæl","Dette er en sæl!");
 
-INSERT INTO image(filepath,location_id,animal_id)
+INSERT INTO image(file_path,image_location,image_animal)
 VALUES ("C:\Users\Laust\IdeaProjects\ChristiansoeExamProject\src\main\resources\static\images\seal.jpeg",null,1);
 
-INSERT INTO sound(filepath,location_id,animal_id)
+INSERT INTO sound(file_path,sound_location,sound_animal)
 VALUES ("C:\Users\Laust\IdeaProjects\ChristiansoeExamProject\src\main\resources\static\sounds\seal.wav",null,1);
 
 INSERT INTO location(title,report,longitude,latitude)

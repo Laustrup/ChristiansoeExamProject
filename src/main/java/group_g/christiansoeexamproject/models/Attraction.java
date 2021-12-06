@@ -7,10 +7,6 @@ import java.util.List;
 @Entity
 public class Attraction extends Location {
 
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     @OneToMany(mappedBy = "images")
     @JsonBackReference
     private List<Animal> animals;
@@ -18,7 +14,6 @@ public class Attraction extends Location {
     @OneToMany(mappedBy = "location")
     @JsonBackReference
     private List<Sound> sounds;
-
 
     public Attraction (String title, String report, double longitude, double latitude,
                         List<Animal> animals, List<Sound> sounds, List<Image> images){
@@ -28,10 +23,6 @@ public class Attraction extends Location {
     }
 
     public Attraction(){}
-
-    public Long getId(){
-        return id;
-    }
 
     public List<Animal> getAnimals() {
         return animals;
