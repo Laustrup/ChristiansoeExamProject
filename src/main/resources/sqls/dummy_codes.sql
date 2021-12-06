@@ -9,10 +9,10 @@ VALUES ("C:\Users\Laust\IdeaProjects\ChristiansoeExamProject\src\main\resources\
 INSERT INTO sound(file_path,sound_location,sound_animal)
 VALUES ("C:\Users\Laust\IdeaProjects\ChristiansoeExamProject\src\main\resources\static\sounds\seal.wav",null,1);
 
-INSERT INTO location(title,report,longitude,latitude)
-VALUES ("Danmarks østligeste punkt","Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!",15.192853298391688,55.32029540616608);
+INSERT INTO location(dtype,title,report,longitude,latitude)
+VALUES ("Attraction","Danmarks østligeste punkt","Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!",15.192853298391688,55.32029540616608);
 
-INSERT INTO location(title,report,longitude,latitude) VALUES ("Badebro","Dette er en badebro!",15.183442624715434,55.32128710201616);
+INSERT INTO location(dtype,title,report,longitude,latitude) VALUES ("Attraction","Badebro","Dette er en badebro!",15.183442624715434,55.32128710201616);
 
 INSERT INTO location_animals(location_id,animal_id) VALUES (1,1);
 INSERT INTO location_animals(location_id,animal_id) VALUES (2,1);
