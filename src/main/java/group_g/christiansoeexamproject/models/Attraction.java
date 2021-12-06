@@ -28,9 +28,7 @@ public class Attraction extends Location {
         this.sounds = sounds;
     }
 
-    public Attraction(){
-
-    }
+    public Attraction(){}
 
     public Long getId(){
         return id;

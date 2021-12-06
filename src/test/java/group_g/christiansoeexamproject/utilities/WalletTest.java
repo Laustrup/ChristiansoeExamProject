@@ -4,11 +4,11 @@ import group_g.christiansoeexamproject.models.*;
 import group_g.christiansoeexamproject.repositories.LocationRepository;
 import group_g.christiansoeexamproject.repositories.TourRepository;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,19 +70,32 @@ class WalletTest {
             listOfAnimals.add((Animal)wallet.getObject(animals[i]));
         }
         String[] sounds = expectedSounds.split("_");
-        LinkedList<Sound> listOfSound = new LinkedList();
+        LinkedList<Sound> listOfSounds = new LinkedList();
         for (int i = 0; i < sounds.length;i++) {
-            listOfSound.add((Sound)wallet.getObject(sounds[i]));
+            listOfSounds.add((Sound)wallet.getObject(sounds[i]));
         }
 
-        Location expected = new Attraction(expectedTitle,expectedReport,longitude,latitude,listOfAnimals,listOfSound,listOfImages);
+        Attraction expected = new Attraction(expectedTitle,expectedReport,longitude,latitude,
+                                            listOfAnimals,listOfSounds,listOfImages);
 
         // Act
-        Location actual = (Attraction) wallet.getObject(expectedTitle);
+        Attraction actual = (Attraction) wallet.getObject(expectedTitle);
 
         // Assert
         assertEquals(true,wallet.doesExist(expected.getTitle()));
+        assertEquals(expected.getReport(),actual.getReport());
+        assertEquals(expected.getLongitude(),actual.getLongitude());
+        assertEquals(expected.getLatitude(),actual.getLatitude());
 
+        for (int i = 0; i < expected.getAnimals().size();i++) {
+            assertEquals(expected.getAnimals().get(i).getTitle(),actual.getAnimals().get(i).getTitle());
+        }
+        for (int i = 0; i < expected.getSounds().size();i++) {
+            assertEquals(expected.getSounds().get(i).getFilePath(),actual.getSounds().get(i).getFilePath());
+        }
+        for (int i = 0; i < expected.getImages().size();i++) {
+            assertEquals(expected.getImages().get(i).getFilePath(),actual.getImages().get(i).getFilePath());
+        }
     }
 
 }
