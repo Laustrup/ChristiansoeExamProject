@@ -40,6 +40,7 @@ class WalletTest {
 
     @BeforeEach
     public void beforeEach() {
+        wallet = new Wallet();
     }
 
     @ParameterizedTest

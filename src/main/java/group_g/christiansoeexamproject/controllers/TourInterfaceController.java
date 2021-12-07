@@ -1,6 +1,5 @@
 package group_g.christiansoeexamproject.controllers;
 
-
 import group_g.christiansoeexamproject.models.Tour;
 import group_g.christiansoeexamproject.repositories.TourRepository;
 import group_g.christiansoeexamproject.utilities.Wallet;
@@ -14,7 +13,7 @@ import java.util.List;
 @RestController
 public class TourInterfaceController {
 
-    Wallet wallet;
+    private Wallet wallet;
 
     public TourInterfaceController(TourRepository tourRepository){
         wallet = Wallet.getWallet();
