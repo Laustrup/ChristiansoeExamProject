@@ -61,4 +61,12 @@ public class Sound {
     public void setLocation(Location location) {
         this.location = location;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }

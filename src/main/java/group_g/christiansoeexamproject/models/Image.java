@@ -56,4 +56,12 @@ public class Image {
     public Location getLocation(){
         return location;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 }
