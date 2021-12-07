@@ -11,8 +11,8 @@ public class Attraction extends Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @ManyToMany(mappedBy = "location")
+//Bør der være manytomany med sounds? hvad med images? kig i sound klassen for mere.
+    @ManyToMany(mappedBy = "locations")
     @JsonBackReference
     private List<Sound> sounds;
 
