@@ -29,20 +29,29 @@ public class Wallet {
 
     public Wallet() {
         inventory = new HashMap<>();
-        update();
     }
 
     public void setTourRepo(TourRepository tourRepo){
         this.tourRepo = tourRepo;
+        doUpdate();
     }
     public void setLocationRepo(LocationRepository locationRepo){
         this.locationRepo = locationRepo;
+        doUpdate();
     }
     public void setImageRepo(ImageRepository imageRepo){
         this.imageRepo = imageRepo;
+        doUpdate();
     }
     public void setSoundRepo(SoundRepository soundRepo){
         this.soundRepo = soundRepo;
+        doUpdate();
+    }
+
+    private void doUpdate() {
+        if (!(tourRepo==null||locationRepo==null||imageRepo==null||soundRepo==null)) {
+            update();
+        }
     }
 
 
