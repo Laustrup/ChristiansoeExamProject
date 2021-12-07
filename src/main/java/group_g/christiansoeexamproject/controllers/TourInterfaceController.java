@@ -30,9 +30,9 @@ public class TourInterfaceController {
         return new ResponseEntity<>(wallet.getAllLocations(), HttpStatus.OK);
     }
 
-    @PostMapping("/tour?={title}")
-    public ResponseEntity<Tour> getTour(@PathVariable (name="title") String title) {
-        return new ResponseEntity<>((Tour)wallet.getObject(title),HttpStatus.OK);
+    @PostMapping("/tour?={id}")
+    public ResponseEntity<Tour> getTour(@PathVariable (name="id") String id) {
+        return new ResponseEntity<>((Tour)wallet.getObject(id),HttpStatus.OK);
     }
 
 }

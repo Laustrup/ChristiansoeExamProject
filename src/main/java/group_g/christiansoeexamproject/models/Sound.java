@@ -25,10 +25,7 @@ public class Sound {
     @JoinColumn(name="sound_location")
     private Location location;
 
-    //Dette skaber et ekstra table hvor to klasser joiner, og giver det mening? Det passer ikke med ER. sound_locations findes ikke!
-    @ManyToMany
-    @JoinColumn(name="sound_locations")
-    private List<Location> locations;
+
 
     public Sound (String title, String filePath){
         this.filePath = filePath;
