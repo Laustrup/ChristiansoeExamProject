@@ -1,13 +1,7 @@
 package group_g.christiansoeexamproject.utilities;
 
-import group_g.christiansoeexamproject.models.Image;
-import group_g.christiansoeexamproject.models.Location;
-import group_g.christiansoeexamproject.models.Sound;
-import group_g.christiansoeexamproject.models.Tour;
-import group_g.christiansoeexamproject.repositories.ImageRepository;
-import group_g.christiansoeexamproject.repositories.LocationRepository;
-import group_g.christiansoeexamproject.repositories.SoundRepository;
-import group_g.christiansoeexamproject.repositories.TourRepository;
+import group_g.christiansoeexamproject.models.*;
+import group_g.christiansoeexamproject.repositories.*;
 
 import java.util.*;
 
@@ -24,6 +18,7 @@ public class Wallet {
 
     private TourRepository tourRepo;
     private LocationRepository locationRepo;
+    private AnimalRepository animalRepo;
     private ImageRepository imageRepo;
     private SoundRepository soundRepo;
 
@@ -37,6 +32,10 @@ public class Wallet {
     }
     public void setLocationRepo(LocationRepository locationRepo){
         this.locationRepo = locationRepo;
+        doUpdate();
+    }
+    public void setAnimalRepo(AnimalRepository animalRepo){
+        this.animalRepo = animalRepo;
         doUpdate();
     }
     public void setImageRepo(ImageRepository imageRepo){
@@ -62,6 +61,7 @@ public class Wallet {
         // Puts all objects into lists
         List<Tour> tours = tourRepo.findAll();
         List<Location> locations = locationRepo.findAll();
+        List<Animal> animals = animalRepo.findAll();
         List<Image> images = imageRepo.findAll();
         List<Sound> sounds = soundRepo.findAll();
 
@@ -75,6 +75,9 @@ public class Wallet {
         }
         for (int i = 0; i < locations.size();i++) {
             inventory.put(String.valueOf(locations.get(i).getId()),locations.get(i));
+        }
+        for (int i = 0; i < animals.size();i++) {
+            inventory.put(String.valueOf(animals.get(i).getId()),animals.get(i));
         }
         for (int i = 0; i < images.size();i++) {
             inventory.put(String.valueOf(images.get(i).getId()),images.get(i));

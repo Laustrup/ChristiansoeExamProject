@@ -1,10 +1,7 @@
 package group_g.christiansoeexamproject.utilities;
 
 import group_g.christiansoeexamproject.models.*;
-import group_g.christiansoeexamproject.repositories.ImageRepository;
-import group_g.christiansoeexamproject.repositories.LocationRepository;
-import group_g.christiansoeexamproject.repositories.SoundRepository;
-import group_g.christiansoeexamproject.repositories.TourRepository;
+import group_g.christiansoeexamproject.repositories.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -17,23 +14,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class WalletTest {
 
     private Wallet wallet;
-    private TourRepository tourRepo;
-    private LocationRepository locationRepo;
-    private ImageRepository imageRepo;
-    private SoundRepository soundRepo;
 
     // Constructor created for injection repositories.
     public WalletTest(TourRepository tourRepo,LocationRepository locationRepo,
-                      ImageRepository imageRepo,SoundRepository soundRepo) {
-
-        this.tourRepo = tourRepo;
-        this.locationRepo = locationRepo;
-        this.imageRepo = imageRepo;
-        this.soundRepo = soundRepo;
+                      AnimalRepository animalRepo, ImageRepository imageRepo,SoundRepository soundRepo) {
 
         wallet = new Wallet();
         wallet.setTourRepo(tourRepo);
         wallet.setLocationRepo(locationRepo);
+        wallet.setAnimalRepo(animalRepo);
         wallet.setImageRepo(imageRepo);
         wallet.setSoundRepo(soundRepo);
     }

@@ -1,5 +1,6 @@
 package group_g.christiansoeexamproject.controllers;
 
+import group_g.christiansoeexamproject.repositories.AnimalRepository;
 import group_g.christiansoeexamproject.repositories.ImageRepository;
 import group_g.christiansoeexamproject.repositories.SoundRepository;
 import group_g.christiansoeexamproject.utilities.Wallet;
@@ -18,8 +19,9 @@ public class MediaController {
 
     private Wallet wallet;
 
-    public MediaController(ImageRepository imageRepo, SoundRepository soundRepo) {
+    public MediaController(AnimalRepository animalRepo, ImageRepository imageRepo, SoundRepository soundRepo) {
         wallet = Wallet.getWallet();
+        wallet.setAnimalRepo(animalRepo);
         wallet.setImageRepo(imageRepo);
         wallet.setSoundRepo(soundRepo);
     }
