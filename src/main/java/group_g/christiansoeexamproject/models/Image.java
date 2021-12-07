@@ -29,8 +29,9 @@ public class Image {
     private Location location;
 
 
-    public Image (String filePath){
+    public Image (String title, String filePath){
         this.filePath = filePath;
+        this.title = title;
     }
 
     public Image(){

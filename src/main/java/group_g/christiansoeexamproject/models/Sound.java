@@ -25,8 +25,9 @@ public class Sound {
     private Location location;
 
 
-    public Sound (String filePath){
+    public Sound (String title, String filePath){
         this.filePath = filePath;
+        this.title = title;
     }
 
     public Sound(){
