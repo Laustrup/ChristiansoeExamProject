@@ -15,9 +15,9 @@ public class TourInterfaceController {
 
     private Wallet wallet;
 
-    public TourInterfaceController(TourRepository tourRepository){
+    public TourInterfaceController(TourRepository tourRepo){
         wallet = Wallet.getWallet();
-        wallet.setTourRepo(tourRepository);
+        wallet.setTourRepo(tourRepo);
     }
 
     @GetMapping("/tours")
@@ -30,8 +30,8 @@ public class TourInterfaceController {
         return new ResponseEntity<>(wallet.getAllLocations(), HttpStatus.OK);
     }
 
-    @PostMapping("/tour?={id}")
-    public ResponseEntity<Tour> getTour(@PathVariable (name="id") String id) {
+    @GetMapping("/tour?={id}")
+    public ResponseEntity<Tour> giveTour(@PathVariable (name="id") String id) {
         return new ResponseEntity<>((Tour)wallet.getObject(id),HttpStatus.OK);
     }
 
