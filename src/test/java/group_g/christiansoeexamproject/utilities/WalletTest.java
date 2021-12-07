@@ -3,15 +3,20 @@ package group_g.christiansoeexamproject.utilities;
 import group_g.christiansoeexamproject.models.*;
 import group_g.christiansoeexamproject.repositories.*;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
 class WalletTest {
+
+    //TODO:!!!!!!!!!!!!!!!!!!!!
+    //Probably need to autowire repos instead of constructor (Like FlyAdminProject)
 
     private Wallet wallet;
 
