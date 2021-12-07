@@ -2,6 +2,7 @@ package group_g.christiansoeexamproject.controllers;
 
 
 import group_g.christiansoeexamproject.models.Tour;
+import group_g.christiansoeexamproject.repositories.TourRepository;
 import group_g.christiansoeexamproject.utilities.Wallet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,9 @@ public class TourInterfaceController {
 
     Wallet wallet;
 
-    public TourInterfaceController(){
-
-        //TODO: Needs to take wallet in parameter, when we figure out how
-        //wallet = new Wallet();
+    public TourInterfaceController(TourRepository tourRepository){
+        wallet = Wallet.getWallet();
+        wallet.setTourRepo(tourRepository);
     }
 
     @GetMapping("/tours")

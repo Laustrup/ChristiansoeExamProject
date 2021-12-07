@@ -31,11 +31,15 @@ class WalletTest {
         this.imageRepo = imageRepo;
         this.soundRepo = soundRepo;
 
+        wallet = new Wallet();
+        wallet.setTourRepo(tourRepo);
+        wallet.setLocationRepo(locationRepo);
+        wallet.setImageRepo(imageRepo);
+        wallet.setSoundRepo(soundRepo);
     }
 
     @BeforeEach
     public void beforeEach() {
-        wallet = new Wallet(tourRepo,locationRepo,imageRepo,soundRepo);
     }
 
     @ParameterizedTest

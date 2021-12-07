@@ -13,6 +13,13 @@ import java.util.*;
 
 public class Wallet {
 
+    private static Wallet wallet;
+
+    public static Wallet getWallet(){
+        if(wallet == null) return new Wallet();
+        else return wallet;
+    }
+
     private Map<String, Object> inventory;
 
     private TourRepository tourRepo;
@@ -20,17 +27,24 @@ public class Wallet {
     private ImageRepository imageRepo;
     private SoundRepository soundRepo;
 
-    public Wallet(TourRepository tourRepo,LocationRepository locationRepo,
-                  ImageRepository imageRepo,SoundRepository soundRepo) {
-
-        this.tourRepo = tourRepo;
-        this.locationRepo = locationRepo;
-        this.imageRepo = imageRepo;
-        this.soundRepo = soundRepo;
-
+    public Wallet() {
         inventory = new HashMap<>();
         update();
     }
+
+    public void setTourRepo(TourRepository tourRepo){
+        this.tourRepo = tourRepo;
+    }
+    public void setLocationRepo(LocationRepository locationRepo){
+        this.locationRepo = locationRepo;
+    }
+    public void setImageRepo(ImageRepository imageRepo){
+        this.imageRepo = imageRepo;
+    }
+    public void setSoundRepo(SoundRepository soundRepo){
+        this.soundRepo = soundRepo;
+    }
+
 
     // Updates the inbox - Needs connection for the database
     public Map<String, Object> update() {
