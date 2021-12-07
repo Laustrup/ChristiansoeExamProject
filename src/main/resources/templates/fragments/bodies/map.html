@@ -12,14 +12,6 @@
                     </tr>
                 </thead>
                 <tbody id="tourChooserTable">
-                    <tr id="tour_1" data-selected="no" data-id="27349">
-                        <td>Spøgelseturen</td>
-                        <td>Du bliver hjemsøgt, hvis du tager på denne faaaarlige tur</td>
-                    </tr>
-                    <tr id="tour_2" data-selected="no" data-id="7234928">
-                        <td>Frøturen</td>
-                        <td>Elsker du frølyde? Hedder du Janus? Dette er turen for dig</td>
-                    </tr>
                 </tbody>
             </table>
 
@@ -37,13 +29,10 @@
         <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
     </div>
 
-    <!--Script to show map -->
     <script>
 
         setUpMap()
         setUpHandlers()
-
-
 
         function setUpMap() {
             let map = L.map('map').setView([55.3203, 15.1877], 16)
@@ -66,17 +55,29 @@
 
         function showTourChooser(){
 
-            //TODO: Get list of tours from REST endpoint
+            const tour1 = {
+                title: "Spøgelsesturen",
+                description: "Du bliver hjemsøgt, hvis du tager på denne faaaarlige tur",
+                id: 6473892
+            }
+            const tour2 = {
+                title: "Frøturen",
+                description: "Elsker du frølyde? Hedder du Janus? Dette er turen for dig",
+                id: 73492
+            }
 
+            const tourList = [tour1, tour2]
+            setUpTourListHTML(tourList)
             document.getElementById("tourChooser").style.display = "flex"
         }
 
         function selectTour(ev){
             let table = document.getElementById("tourChooserTable")
-            let rowIndex = ev.target.parentElement.rowIndex
+            let rowIndex = ev.target.parentElement.rowIndex - 1
             let maxRows = table.rows.length
 
-            for(let i = 1; i <= maxRows; i++){
+
+            for(let i = 0; i < maxRows; i++){
                 let row = document.getElementById("tour_" + i)
                 if(i === rowIndex){
                     row.style.backgroundColor = "dodgerblue"
@@ -93,7 +94,7 @@
             let table = document.getElementById("tourChooserTable")
             let maxRows = table.rows.length
 
-            for(let i = 1; i <= maxRows; i++){
+            for(let i = 0; i < maxRows; i++){
                 let row = document.getElementById("tour_" + i)
                 if(row.getAttribute("data-selected") === "yes") {
                     let id = row.getAttribute("data-id")
@@ -111,6 +112,29 @@
         function getTour(id){
             alert("You got tour with id " + id)
         }
+
+        function setUpTourListHTML(tours){
+            let finalHTML = generateTourListHTML(tours)
+
+            let tableBody = document.getElementById("tourChooserTable")
+            tableBody.innerHTML = finalHTML
+        }
+
+        function generateTourListHTML(tours){
+            let finalHTML = ""
+            for(let i = 0; i < tours.length; i++){
+                let rowId = "tour_" + i
+                finalHTML +=
+                    `<tr id=${rowId}  data-selected="no" data-id=${tours[i].id}>
+                        <td>${tours[i].title}</td>
+                        <td>${tours[i].description}</td>
+                    </tr>
+                    `
+            }
+            return finalHTML
+        }
+
+
     </script>
 
 </html>
