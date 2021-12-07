@@ -1,12 +1,12 @@
 package group_g.christiansoeexamproject.controllers;
 
+import group_g.christiansoeexamproject.models.Location;
 import group_g.christiansoeexamproject.models.Tour;
 import group_g.christiansoeexamproject.repositories.TourRepository;
 import group_g.christiansoeexamproject.utilities.Wallet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,11 +21,18 @@ public class TourInterfaceController {
     }
 
     @GetMapping("/tours")
-    public ResponseEntity<List<Tour>> tourList(){
+    public ResponseEntity<List<Tour>> listOfTours(){
+        return new ResponseEntity<>(wallet.getAllTours(), HttpStatus.OK);
+    }
 
-        List<Tour> response = wallet.getAllTours();
+    @GetMapping("/locations")
+    public ResponseEntity<List<Location>> tourLocations(){
+        return new ResponseEntity<>(wallet.getAllLocations(), HttpStatus.OK);
+    }
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
+    @PostMapping("/tour?={title}")
+    public ResponseEntity<Tour> getTour(@PathVariable (name="title") String title) {
+        return new ResponseEntity<>((Tour)wallet.getObject(title),HttpStatus.OK);
     }
 
 }
