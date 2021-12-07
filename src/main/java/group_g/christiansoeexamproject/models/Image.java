@@ -15,6 +15,9 @@ public class Image {
     @Column(nullable = false)
     private String filePath;
 
+    @Column
+    private String title;
+
     @ManyToOne
     @JoinColumn(name="image_animal")
     @JsonManagedReference

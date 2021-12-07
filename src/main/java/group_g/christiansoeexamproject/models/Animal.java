@@ -26,14 +26,18 @@ public class Animal {
     @JsonBackReference
     private List<Sound> sounds;
 
+    @ManyToMany
+    @JoinColumn(name="animals")
+    private List<Location> locations;
 
 
 
-    public Animal(String title, String report, List<Image> images, List<Sound> sounds){
+    public Animal(String title, String report, List<Image> images, List<Sound> sounds, List<Location> locations){
         this.title = title;
         this.report = report;
         this.images = images;
         this.sounds = sounds;
+        this.locations = locations;
     }
 
     public Animal(){
@@ -74,5 +78,13 @@ public class Animal {
 
     public void setSound(List<Sound> sounds) {
         this.sounds = sounds;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
     }
 }

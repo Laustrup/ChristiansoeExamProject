@@ -13,6 +13,9 @@ public class Sound {
     @Column(nullable = false)
     private String filePath;
 
+    @Column
+    private String title;
+
     @ManyToOne
     @JoinColumn(name="sound_animal")
     private Animal animal;

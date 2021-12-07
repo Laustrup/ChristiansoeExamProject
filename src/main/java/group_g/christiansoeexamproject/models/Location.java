@@ -25,10 +25,6 @@ public abstract class Location {
     @JsonBackReference
     private List<Image> images;
 
-    @OneToMany(mappedBy = "location")
-    @JsonBackReference
-    private List<Sound> sounds;
-
     @ManyToMany(mappedBy = "locations")
     private List<Tour> tours;
 
@@ -86,14 +82,6 @@ public abstract class Location {
 
     public void setImages(List<Image> images) {
         this.images = images;
-    }
-
-    public List<Sound> getSounds(){
-        return sounds;
-    }
-
-    public void setSounds(List<Sound> sounds){
-        this.sounds = sounds;
     }
 
     public List<Tour> getTours(){

@@ -7,13 +7,19 @@ import java.util.List;
 @Entity
 public class Attraction extends Location {
 
-    @OneToMany(mappedBy = "images")
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+
+    @ManyToMany(mappedBy = "location")
+    @JsonBackReference
+    private List<Sound> sounds;
+
+    @ManyToMany(mappedBy = "locations")
     @JsonBackReference
     private List<Animal> animals;
 
-    @OneToMany(mappedBy = "location")
-    @JsonBackReference
-    private List<Sound> sounds;
 
     public Attraction (String title, String report, double longitude, double latitude,
                         List<Animal> animals, List<Sound> sounds, List<Image> images){
@@ -23,6 +29,10 @@ public class Attraction extends Location {
     }
 
     public Attraction(){}
+
+    public Long getId(){
+        return id;
+    }
 
     public List<Animal> getAnimals() {
         return animals;
