@@ -1,7 +1,9 @@
 package group_g.christiansoeexamproject.utilities;
 
 import group_g.christiansoeexamproject.models.*;
+import group_g.christiansoeexamproject.repositories.ImageRepository;
 import group_g.christiansoeexamproject.repositories.LocationRepository;
+import group_g.christiansoeexamproject.repositories.SoundRepository;
 import group_g.christiansoeexamproject.repositories.TourRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,16 +19,23 @@ class WalletTest {
     private Wallet wallet;
     private TourRepository tourRepo;
     private LocationRepository locationRepo;
+    private ImageRepository imageRepo;
+    private SoundRepository soundRepo;
 
     // Constructor created for injection repositories.
-    public WalletTest(TourRepository tourRepo,LocationRepository locationRepo) {
+    public WalletTest(TourRepository tourRepo,LocationRepository locationRepo,
+                      ImageRepository imageRepo,SoundRepository soundRepo) {
+
         this.tourRepo = tourRepo;
         this.locationRepo = locationRepo;
+        this.imageRepo = imageRepo;
+        this.soundRepo = soundRepo;
+
     }
 
     @BeforeEach
     public void beforeEach() {
-        wallet = new Wallet(tourRepo,locationRepo);
+        wallet = new Wallet(tourRepo,locationRepo,imageRepo,soundRepo);
     }
 
     @ParameterizedTest
@@ -103,6 +112,34 @@ class WalletTest {
         }
     }
 
+    @ParameterizedTest
+    @CsvSource(value = "sæl,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg",delimiter = '|')
+    public void imageTest(String expectedTitle,String expectedFilePath) {
+        // Arrange
+        Sound expected = new Sound(expectedTitle,expectedFilePath);
 
+        // Act
+        Sound act = new Sound(expectedTitle,expectedFilePath);
+
+        // Assert
+        assertEquals(expected.getTitle(),act.getTitle());
+        assertEquals(expected.getFilePath(),act.getFilePath());
+
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = "sæl,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav",delimiter = '|')
+    public void soundTest(String expectedTitle,String expectedFilePath) {
+        // Arrange
+        Image expected = new Image(expectedTitle,expectedFilePath);
+
+        // Act
+        Image act = (Image) wallet.getObject(expectedTitle);
+
+        // Assert
+        assertEquals(expected.getTitle(),act.getFilePath());
+        assertEquals(expected.getFilePath(),act.getFilePath());
+
+    }
 
 }
