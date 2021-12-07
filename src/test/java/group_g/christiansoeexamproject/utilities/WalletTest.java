@@ -95,7 +95,7 @@ class WalletTest {
         }
 
         Attraction expected = new Attraction(expectedTitle,expectedReport,longitude,latitude,
-                                            listOfAnimals,listOfSounds,listOfImages);
+                                            listOfAnimals,listOfImages, listOfSounds);
 
         // Act
         Attraction actual = (Attraction) wallet.getObject(expectedTitle);

@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <style>
-        .selectedTd {
-            background-color: dodgerblue;
-        }
-    </style>
+
     <div id="tourChooser" class="tourChooser">
         <div class="tourList">
             <table>
@@ -16,11 +12,11 @@
                     </tr>
                 </thead>
                 <tbody id="tourChooserTable">
-                    <tr id="tour_1">
+                    <tr id="tour_1" data-selected="no" data-id="27349">
                         <td>Spøgelseturen</td>
                         <td>Du bliver hjemsøgt, hvis du tager på denne faaaarlige tur</td>
                     </tr>
-                    <tr id="tour_2">
+                    <tr id="tour_2" data-selected="no" data-id="7234928">
                         <td>Frøturen</td>
                         <td>Elsker du frølyde? Hedder du Janus? Dette er turen for dig</td>
                     </tr>
@@ -44,7 +40,6 @@
     <!--Script to show map -->
     <script>
 
-        let selectedRow
         setUpMap()
         setUpHandlers()
 
@@ -70,24 +65,52 @@
         }
 
         function showTourChooser(){
+
+            //TODO: Get list of tours from REST endpoint
+
             document.getElementById("tourChooser").style.display = "flex"
         }
 
         function selectTour(ev){
             let table = document.getElementById("tourChooserTable")
             let rowIndex = ev.target.parentElement.rowIndex
-            selectedRow = rowIndex
             let maxRows = table.rows.length
+
+            for(let i = 1; i <= maxRows; i++){
+                let row = document.getElementById("tour_" + i)
+                if(i === rowIndex){
+                    row.style.backgroundColor = "dodgerblue"
+                    row.setAttribute("data-selected", "yes")
+                }
+                else{
+                    row.style.backgroundColor = "transparent"
+                    row.setAttribute("data-selected", "no")
+                }
+            }
         }
 
-        function chooseTour(ev){
+        function chooseTour(){
+            let table = document.getElementById("tourChooserTable")
+            let maxRows = table.rows.length
 
+            for(let i = 1; i <= maxRows; i++){
+                let row = document.getElementById("tour_" + i)
+                if(row.getAttribute("data-selected") === "yes") {
+                    let id = row.getAttribute("data-id")
+                    getTour(id)
+                    return
+                }
+            }
+            alert("You need to select a tour")
         }
 
         function closeTourChooser(){
             document.getElementById("tourChooser").style.display = "none"
         }
 
+        function getTour(id){
+            alert("You got tour with id " + id)
+        }
     </script>
 
 </html>
