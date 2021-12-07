@@ -25,13 +25,18 @@ public abstract class Location {
     @JsonBackReference
     private List<Image> images;
 
+    @OneToMany(mappedBy = "location")
+    @JsonBackReference
+    private List<Sound> sounds;
+
     @ManyToMany(mappedBy = "locations")
     private List<Tour> tours;
 
-    public Location(String title, String report, double longitude, double latitude, List<Image> images){
+    public Location(String title, String report, double longitude, double latitude, List<Image> images, List<Sound> sounds){
         this.title = title;
         this.report = report;
         this.images = images;
+        this.sounds = sounds;
         this.longitude = longitude;
         this.latitude = latitude;
     }
@@ -82,6 +87,14 @@ public abstract class Location {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public List<Sound> getSounds() {
+        return sounds;
+    }
+
+    public void setSounds(List<Sound> sounds) {
+        this.sounds = sounds;
     }
 
     public List<Tour> getTours(){
