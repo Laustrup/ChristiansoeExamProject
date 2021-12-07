@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 
+    <style>
+        .selectedTd {
+            background-color: dodgerblue;
+        }
+    </style>
     <div id="tourChooser" class="tourChooser">
         <div class="tourList">
             <table>
-                <tr>
-                    <th>Navn</th>
-                    <th>Beskrivelse</th>
-                </tr>
-                <tr>
-                    <td>Spøgelseturen</td>
-                    <td>Du bliver hjemsøgt, hvis du tager på denne faaaarlige tur</td>
-                </tr>
-                <tr>
-                    <td>Frøturen</td>
-                    <td>Elsker du frølyde? Hedder du Janus? Dette er turen for dig</td>
-                </tr>
+                <thead>
+                    <tr>
+                        <th>Navn</th>
+                        <th>Beskrivelse</th>
+                    </tr>
+                </thead>
+                <tbody id="tourChooserTable">
+                    <tr id="tour_1">
+                        <td>Spøgelseturen</td>
+                        <td>Du bliver hjemsøgt, hvis du tager på denne faaaarlige tur</td>
+                    </tr>
+                    <tr id="tour_2">
+                        <td>Frøturen</td>
+                        <td>Elsker du frølyde? Hedder du Janus? Dette er turen for dig</td>
+                    </tr>
+                </tbody>
             </table>
 
             <div class="modalBtnFlex">
@@ -34,28 +43,50 @@
 
     <!--Script to show map -->
     <script>
-        let map = L.map('map').setView([55.3203,15.1877], 16)
 
-        let tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2Vvd2FsbCIsImEiOiJja3dvc28yeHkwNjBjMm9sMHB1NGlkdTJsIn0.-zQAF2T_9EOKLHEGnbUV4w', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id: 'mapbox/streets-v11',
-            tileSize: 512,
-            zoomOffset: -1,
-        }).addTo(map)
-    </script>
+        let selectedRow
+        setUpMap()
+        setUpHandlers()
 
-    <script>
-        let tourChooserModal = document.getElementById("tourChooser")
-        let tourChooserBtn = document.getElementById("tourBtn")
 
-        let closeTourChooserBtn = document.getElementById("closeTourChooser")
 
-        tourChooserBtn.onclick = () =>{
-            tourChooserModal.style.display = "flex"
+        function setUpMap() {
+            let map = L.map('map').setView([55.3203, 15.1877], 16)
+
+            let tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZ2Vvd2FsbCIsImEiOiJja3dvc28yeHkwNjBjMm9sMHB1NGlkdTJsIn0.-zQAF2T_9EOKLHEGnbUV4w', {
+                attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+                maxZoom: 18,
+                id: 'mapbox/streets-v11',
+                tileSize: 512,
+                zoomOffset: -1,
+            }).addTo(map)
         }
 
-        closeTourChooserBtn.onclick = () => tourChooserModal.style.display = "none"
+        function setUpHandlers() {
+            document.getElementById("tourBtn").onclick = showTourChooser
+            document.getElementById("tourChooserTable").onclick = selectTour
+            document.getElementById("selectTourBtn").onclick = chooseTour
+            document.getElementById("closeTourChooser").onclick = closeTourChooser
+        }
+
+        function showTourChooser(){
+            document.getElementById("tourChooser").style.display = "flex"
+        }
+
+        function selectTour(ev){
+            let table = document.getElementById("tourChooserTable")
+            let rowIndex = ev.target.parentElement.rowIndex
+            selectedRow = rowIndex
+            let maxRows = table.rows.length
+        }
+
+        function chooseTour(ev){
+
+        }
+
+        function closeTourChooser(){
+            document.getElementById("tourChooser").style.display = "none"
+        }
 
     </script>
 

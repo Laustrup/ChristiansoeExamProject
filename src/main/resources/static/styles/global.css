@@ -1,6 +1,6 @@
 .map {
     height: 600px;
-    width: 30%;
+    width: 540px;
     z-index: 1;
 }
 
@@ -28,8 +28,8 @@
     margin-left: 50px;
     margin-right: 50px;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+    top: 50px;
+    transform: translate(-50%);
     overflow: auto;
     background-color: rgba(0,0,0,0.4);
     justify-content: center;
