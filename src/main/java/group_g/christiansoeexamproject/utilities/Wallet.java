@@ -2,12 +2,14 @@ package group_g.christiansoeexamproject.utilities;
 
 import group_g.christiansoeexamproject.models.*;
 import group_g.christiansoeexamproject.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 public class Wallet {
 
-    private static Wallet wallet;
+    private static Wallet wallet = new Wallet();
 
     public static Wallet getWallet(){
         if(wallet == null){
@@ -16,7 +18,7 @@ public class Wallet {
         return wallet;
     }
 
-    private Map<String, Object> inventory;
+    private Map<String, Object> inventory = new HashMap<>();
 
     private TourRepository tourRepo;
     private LocationRepository locationRepo;
@@ -24,35 +26,15 @@ public class Wallet {
     private ImageRepository imageRepo;
     private SoundRepository soundRepo;
 
-    public Wallet() {
-        inventory = new HashMap<>();
-    }
+    public void injectRepos(TourRepository tourRepo,LocationRepository locationRepo,AnimalRepository animalRepo,
+                       ImageRepository imageRepo, SoundRepository soundRepo) {
 
-    public void setTourRepo(TourRepository tourRepo){
         this.tourRepo = tourRepo;
-        doUpdate();
-    }
-    public void setLocationRepo(LocationRepository locationRepo){
         this.locationRepo = locationRepo;
-        doUpdate();
-    }
-    public void setAnimalRepo(AnimalRepository animalRepo){
         this.animalRepo = animalRepo;
-        doUpdate();
-    }
-    public void setImageRepo(ImageRepository imageRepo){
         this.imageRepo = imageRepo;
-        doUpdate();
-    }
-    public void setSoundRepo(SoundRepository soundRepo){
         this.soundRepo = soundRepo;
-        doUpdate();
-    }
-
-    private void doUpdate() {
-        if (!(tourRepo==null||locationRepo==null||animalRepo==null||imageRepo==null||soundRepo==null)) {
-            update();
-        }
+        update();
     }
 
     // Updates the inbox - Needs connection for the database
@@ -72,23 +54,23 @@ public class Wallet {
 
         // Puts the lists from the database into the inbox as keys from the objects titles
         for (int i = 0; i < tours.size();i++) {
-            inventory.put("Tour id: "+String.valueOf(tours.get(i).getId()),tours.get(i));
+            inventory.put("Tour id: "+tours.get(i).getId(),tours.get(i));
             inventory.put(tours.get(i).getTitle(),tours.get(i));
         }
         for (int i = 0; i < locations.size();i++) {
-            inventory.put(String.valueOf(locations.get(i).getId()),locations.get(i));
+            inventory.put("Location id: "+locations.get(i).getId(),locations.get(i));
             inventory.put(locations.get(i).getTitle(),locations.get(i));
         }
         for (int i = 0; i < animals.size();i++) {
-            inventory.put(String.valueOf(animals.get(i).getId()),animals.get(i));
+            inventory.put("Animal id: "+animals.get(i).getId(),animals.get(i));
             inventory.put(animals.get(i).getTitle(),animals.get(i));
         }
         for (int i = 0; i < images.size();i++) {
-            inventory.put(String.valueOf(images.get(i).getId()),images.get(i));
+            inventory.put("Image id: "+(images.get(i).getId()),images.get(i));
             inventory.put(images.get(i).getTitle(),images.get(i));
         }
         for (int i = 0; i < sounds.size();i++) {
-            inventory.put(String.valueOf(sounds.get(i).getId()),sounds.get(i));
+            inventory.put("Sound id: "+sounds.get(i).getId(),sounds.get(i));
             inventory.put(sounds.get(i).getTitle(),sounds.get(i));
         }
 
@@ -99,7 +81,10 @@ public class Wallet {
         return inventory.get(key);
     }
     public Tour getTour(int id) {
-        return (Tour) inventory.get("Tour id: "+String.valueOf(id));
+        return (Tour) inventory.get("Tour id: "+id);
+    }
+    public Location getLocation(int id) {
+        return (Location) inventory.get("Location id: "+id);
     }
 
     // Returns true if key exists and replaces the key's value with method's value parameter
