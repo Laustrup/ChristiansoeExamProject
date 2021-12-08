@@ -30,21 +30,10 @@ class WalletTest {
     @Autowired
     SoundRepository soundRepo;
 
-
-    // Constructor created for injection repositories.
-    public WalletTest() {
-
-        wallet = new Wallet();
-        wallet.setTourRepo(tourRepo);
-        wallet.setLocationRepo(locationRepo);
-        wallet.setAnimalRepo(animalRepo);
-        wallet.setImageRepo(imageRepo);
-        wallet.setSoundRepo(soundRepo);
-    }
-
     @BeforeEach
     public void beforeEach() {
-        wallet.update();
+        wallet = Wallet.getWallet();
+        wallet.injectRepos(tourRepo,locationRepo,animalRepo,imageRepo,soundRepo);
     }
 
     @ParameterizedTest

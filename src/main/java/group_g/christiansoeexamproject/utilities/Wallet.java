@@ -2,12 +2,14 @@ package group_g.christiansoeexamproject.utilities;
 
 import group_g.christiansoeexamproject.models.*;
 import group_g.christiansoeexamproject.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 public class Wallet {
 
-    private static Wallet wallet;
+    private static Wallet wallet = new Wallet();
 
     public static Wallet getWallet(){
         if(wallet == null){
@@ -16,7 +18,7 @@ public class Wallet {
         return wallet;
     }
 
-    private Map<String, Object> inventory;
+    private Map<String, Object> inventory = new HashMap<>();
 
     private TourRepository tourRepo;
     private LocationRepository locationRepo;
@@ -24,35 +26,15 @@ public class Wallet {
     private ImageRepository imageRepo;
     private SoundRepository soundRepo;
 
-    public Wallet() {
-        inventory = new HashMap<>();
-    }
+    public void injectRepos(TourRepository tourRepo,LocationRepository locationRepo,AnimalRepository animalRepo,
+                       ImageRepository imageRepo, SoundRepository soundRepo) {
 
-    public void setTourRepo(TourRepository tourRepo){
         this.tourRepo = tourRepo;
-        doUpdate();
-    }
-    public void setLocationRepo(LocationRepository locationRepo){
         this.locationRepo = locationRepo;
-        doUpdate();
-    }
-    public void setAnimalRepo(AnimalRepository animalRepo){
         this.animalRepo = animalRepo;
-        doUpdate();
-    }
-    public void setImageRepo(ImageRepository imageRepo){
         this.imageRepo = imageRepo;
-        doUpdate();
-    }
-    public void setSoundRepo(SoundRepository soundRepo){
         this.soundRepo = soundRepo;
-        doUpdate();
-    }
-
-    private void doUpdate() {
-        if (!(tourRepo==null||locationRepo==null||animalRepo==null||imageRepo==null||soundRepo==null)) {
-            update();
-        }
+        update();
     }
 
     // Updates the inbox - Needs connection for the database

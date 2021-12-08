@@ -1,7 +1,6 @@
 package group_g.christiansoeexamproject.controllers;
 
 import group_g.christiansoeexamproject.models.Location;
-import group_g.christiansoeexamproject.repositories.LocationRepository;
 import group_g.christiansoeexamproject.utilities.Wallet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,12 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PostInterfaceController {
 
-    private final Wallet wallet;
-
-    public PostInterfaceController(LocationRepository locationRepo){
-        wallet = Wallet.getWallet();
-        wallet.setLocationRepo(locationRepo);
-    }
+    private final Wallet wallet = Wallet.getWallet();
 
     @GetMapping("/location?={id}")
     public ResponseEntity<Location> giveLocation(@PathVariable (name = "id") int id) {

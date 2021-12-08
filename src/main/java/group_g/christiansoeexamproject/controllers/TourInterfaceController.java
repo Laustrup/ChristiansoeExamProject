@@ -13,12 +13,7 @@ import java.util.List;
 @RestController
 public class TourInterfaceController {
 
-    private final Wallet wallet;
-
-    public TourInterfaceController(TourRepository tourRepo){
-        wallet = Wallet.getWallet();
-        wallet.setTourRepo(tourRepo);
-    }
+    private final Wallet wallet = Wallet.getWallet();
 
     @GetMapping("/tours")
     public ResponseEntity<List<Tour>> listOfTours(){
