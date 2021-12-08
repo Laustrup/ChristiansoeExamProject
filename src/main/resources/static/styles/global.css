@@ -55,3 +55,13 @@ table, th, td {
 .modalBtn {
     margin: 5px;
 }
+
+.flex-sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+.locationChooserFlex {
+    display: flex;
+    flex-direction: row;
+}
