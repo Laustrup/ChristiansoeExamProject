@@ -74,18 +74,23 @@ public class Wallet {
         // Puts the lists from the database into the inbox as keys from the objects titles
         for (int i = 0; i < tours.size();i++) {
             inventory.put(String.valueOf(tours.get(i).getId()),tours.get(i));
+            inventory.put(tours.get(i).getTitle(),tours.get(i));
         }
         for (int i = 0; i < locations.size();i++) {
             inventory.put(String.valueOf(locations.get(i).getId()),locations.get(i));
+            inventory.put(locations.get(i).getTitle(),locations.get(i));
         }
         for (int i = 0; i < animals.size();i++) {
             inventory.put(String.valueOf(animals.get(i).getId()),animals.get(i));
+            inventory.put(animals.get(i).getTitle(),animals.get(i));
         }
         for (int i = 0; i < images.size();i++) {
             inventory.put(String.valueOf(images.get(i).getId()),images.get(i));
+            inventory.put(images.get(i).getTitle(),images.get(i));
         }
         for (int i = 0; i < sounds.size();i++) {
             inventory.putIfAbsent(String.valueOf(sounds.get(i).getId()),sounds.get(i));
+            inventory.put(sounds.get(i).getTitle(),sounds.get(i));
         }
 
         return inventory;
