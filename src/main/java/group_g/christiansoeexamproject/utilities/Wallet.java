@@ -72,11 +72,11 @@ public class Wallet {
 
         // Puts the lists from the database into the inbox as keys from the objects titles
         for (int i = 0; i < tours.size();i++) {
-            inventory.put("Tour id: "+String.valueOf(tours.get(i).getId()),tours.get(i));
+            inventory.put("Tour id: "+tours.get(i).getId(),tours.get(i));
             inventory.put(tours.get(i).getTitle(),tours.get(i));
         }
         for (int i = 0; i < locations.size();i++) {
-            inventory.put(String.valueOf(locations.get(i).getId()),locations.get(i));
+            inventory.put("Location id: "+locations.get(i).getId(),locations.get(i));
             inventory.put(locations.get(i).getTitle(),locations.get(i));
         }
         for (int i = 0; i < animals.size();i++) {
@@ -99,7 +99,10 @@ public class Wallet {
         return inventory.get(key);
     }
     public Tour getTour(int id) {
-        return (Tour) inventory.get("Tour id: "+String.valueOf(id));
+        return (Tour) inventory.get("Tour id: "+id);
+    }
+    public Location getLocation(int id) {
+        return (Location) inventory.get("Location id: "+id);
     }
 
     // Returns true if key exists and replaces the key's value with method's value parameter
