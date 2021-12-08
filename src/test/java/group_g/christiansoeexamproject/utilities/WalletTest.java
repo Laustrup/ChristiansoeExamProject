@@ -121,13 +121,13 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg",delimiter = '|')
+    @CsvSource(value = "Sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg",delimiter = '|')
     public void imageTest(String expectedTitle,String expectedFilePath) {
         // Arrange
-        Sound expected = new Sound(expectedTitle,expectedFilePath);
+        Image expected = new Image(expectedTitle,expectedFilePath);
 
         // Act
-        Sound act = new Sound(expectedTitle,expectedFilePath);
+        Image act = new Image(expectedTitle,expectedFilePath);
 
         // Assert
         assertEquals(expected.getTitle(),act.getTitle());
@@ -136,16 +136,16 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "sæl_hyl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav",delimiter = '|')
+    @CsvSource(value = "Sæl hyl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav",delimiter = '|')
     public void soundTest(String expectedTitle,String expectedFilePath) {
         // Arrange
-        Image expected = new Image(expectedTitle,expectedFilePath);
+        Sound expected = new Sound(expectedTitle,expectedFilePath);
 
         // Act
-        Image act = (Image) wallet.getObject(expectedTitle);
+        Sound act = (Sound) wallet.getObject(expectedTitle);
 
         // Assert
-        assertEquals(expected.getTitle(),act.getFilePath());
+        assertEquals(expected.getTitle(),act.getTitle());
         assertEquals(expected.getFilePath(),act.getFilePath());
 
     }

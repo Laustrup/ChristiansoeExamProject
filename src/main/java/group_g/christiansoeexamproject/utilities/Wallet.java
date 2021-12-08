@@ -89,7 +89,7 @@ public class Wallet {
             inventory.put(images.get(i).getTitle(),images.get(i));
         }
         for (int i = 0; i < sounds.size();i++) {
-            inventory.putIfAbsent(String.valueOf(sounds.get(i).getId()),sounds.get(i));
+            inventory.put(String.valueOf(sounds.get(i).getId()),sounds.get(i));
             inventory.put(sounds.get(i).getTitle(),sounds.get(i));
         }
 
