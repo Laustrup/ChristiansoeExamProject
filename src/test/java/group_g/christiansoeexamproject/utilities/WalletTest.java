@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.LinkedList;
@@ -20,9 +21,20 @@ class WalletTest {
 
     private Wallet wallet;
 
+    @Autowired
+    TourRepository tourRepo;
+    @Autowired
+    LocationRepository locationRepo;
+    @Autowired
+    AnimalRepository animalRepo;
+    @Autowired
+    ImageRepository imageRepo;
+    @Autowired
+    SoundRepository soundRepo;
+
+
     // Constructor created for injection repositories.
-    public WalletTest(TourRepository tourRepo,LocationRepository locationRepo,
-                      AnimalRepository animalRepo, ImageRepository imageRepo,SoundRepository soundRepo) {
+    public WalletTest() {
 
         wallet = new Wallet();
         wallet.setTourRepo(tourRepo);
@@ -38,7 +50,7 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "Fra vest til øst,Denne tur er fra vest til øst!,Danmarks østligeste punkt_Badebro",delimiter = '|')
+    @CsvSource(value = "Fra vest til øst|Denne tur er fra vest til øst!|Danmarks østligeste punkt_Badebro",delimiter = '|')
     public void tourTest(String expectedTitle, String expectedReport, String expectedLocations) {
         // Arrange
         String[] locations = expectedLocations.split("_");
@@ -62,12 +74,12 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "Danmarks østligeste punkt,Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!," +
-                        "15.192853298391688,55.32029540616608,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg," +
-                        "Sæl,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav|" +
+    @CsvSource(value = {"Danmarks østligeste punkt|Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!|" +
+                        "15.192853298391688|55.32029540616608|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg|" +
+                        "Sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav" ,
 
-                        "Badebro,Dette er en badebro!,15.183442624715434,55.32128710201616,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg," +
-                        "Sæl,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav", delimiter = '|')
+                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg|" +
+                        "Sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav"}, delimiter = '|')
     public void locationTest(String expectedTitle, String expectedReport,
                              double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
@@ -112,7 +124,7 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "sæl,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg",delimiter = '|')
+    @CsvSource(value = "sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg",delimiter = '|')
     public void imageTest(String expectedTitle,String expectedFilePath) {
         // Arrange
         Sound expected = new Sound(expectedTitle,expectedFilePath);
@@ -127,7 +139,7 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "sæl,C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav",delimiter = '|')
+    @CsvSource(value = "sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav",delimiter = '|')
     public void soundTest(String expectedTitle,String expectedFilePath) {
         // Arrange
         Image expected = new Image(expectedTitle,expectedFilePath);
