@@ -98,6 +98,9 @@ public class Wallet {
     public Object getObject(String key) {
         return inventory.get(key);
     }
+    public Tour getTour(int id) {
+        return (Tour) inventory.get("Tour id: "+String.valueOf(id));
+    }
 
     // Returns true if key exists and replaces the key's value with method's value parameter
     public boolean replace(String key, Object value) {
