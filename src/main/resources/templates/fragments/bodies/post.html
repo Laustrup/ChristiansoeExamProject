@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <h1>Lol this works</h1>
+
+    <script>
+
+        getPost()
+        function getPost(){
+            let id = sessionStorage.getItem("locationId")
+
+            fetch("http://localhost:8080/location?id=" + id)
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    console.log(data)
+                })
+        }
+    </script>
+</html>

@@ -14,4 +14,11 @@ public class IndexController {
 
         return "index";
     }
+
+    @GetMapping("/post")
+    public String post(Model model){
+        model.addAttribute("Body", "Location");
+
+        return "index";
+    }
 }

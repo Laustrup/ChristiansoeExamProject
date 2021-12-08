@@ -9,5 +9,9 @@
             <div th:replace="/fragments/bodies/map.html"></div>
         </div>
 
+        <div th:if="${Body eq 'Location'}">
+            <div th:replace="/fragments/bodies/post.html"></div>
+        </div>
+
     </body>
 </html>
