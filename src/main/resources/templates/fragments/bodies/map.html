@@ -22,11 +22,16 @@
         </div>
     </div>
 
+    <div id="loadingPrompt" class="tourChooser">
+        <h1>Indlæser tur</h1>
+    </div>
 
     <div class="flex-container">
         <div id="map" class="map"></div>
 
-        <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+        <div class="flex-sidebar">
+            <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+        </div>
     </div>
 
     <script>
@@ -54,8 +59,6 @@
         }
 
         function showTourChooser(){
-
-
             fetch("http://localhost:8080/tours")
                 .then((response) => {
                     return response.json()
@@ -70,10 +73,8 @@
                             id: data[i].id
                         })
                     }
-
                     setUpTourListHTML(tourList)
                 })
-
             document.getElementById("tourChooser").style.display = "flex"
         }
 
@@ -116,7 +117,17 @@
         }
 
         function getTour(id){
-            alert("You got tour with id " + id)
+            document.getElementById("tourChooser").style.display = "none"
+            document.getElementById("loadingPrompt").style.display = "flex"
+
+            fetch("http://localhost:8080/tour?id=" + id)
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    console.log(data)
+                    document.getElementById("loadingPrompt").style.display = "none"
+                })
         }
 
         function setUpTourListHTML(tours){
