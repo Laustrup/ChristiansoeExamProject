@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 public class TourInterfaceController {
 
-    private Wallet wallet;
+    private final Wallet wallet;
 
     public TourInterfaceController(TourRepository tourRepo){
         wallet = Wallet.getWallet();

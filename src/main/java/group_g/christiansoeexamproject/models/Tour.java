@@ -16,7 +16,7 @@ public class Tour {
     @Column
     private String report;
 
-   @ManyToMany
+    @ManyToMany
     @JoinColumn(name="tour_location")
     private List<Location> locations;
 

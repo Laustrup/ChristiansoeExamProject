@@ -1,5 +1,6 @@
 package group_g.christiansoeexamproject.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,6 +31,7 @@ public abstract class Location {
     private List<Sound> sounds;
 
     @ManyToMany(mappedBy = "locations")
+    @JsonIgnoreProperties("locations")
     private List<Tour> tours;
 
     public Location(String title, String report, double longitude, double latitude, List<Image> images, List<Sound> sounds){
