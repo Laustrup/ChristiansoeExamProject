@@ -50,7 +50,7 @@ public class Wallet {
     }
 
     private void doUpdate() {
-        if (!(tourRepo==null||locationRepo==null||imageRepo==null||soundRepo==null)) {
+        if (!(tourRepo==null||locationRepo==null||animalRepo==null||imageRepo==null||soundRepo==null)) {
             update();
         }
     }

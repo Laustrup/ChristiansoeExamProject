@@ -55,19 +55,25 @@
 
         function showTourChooser(){
 
-            const tour1 = {
-                title: "Spøgelsesturen",
-                description: "Du bliver hjemsøgt, hvis du tager på denne faaaarlige tur",
-                id: 6473892
-            }
-            const tour2 = {
-                title: "Frøturen",
-                description: "Elsker du frølyde? Hedder du Janus? Dette er turen for dig",
-                id: 73492
-            }
 
-            const tourList = [tour1, tour2]
-            setUpTourListHTML(tourList)
+            fetch("http://localhost:8080/tours")
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    const tourList = []
+
+                    for(let i = 0; i < data.length; i++){
+                        tourList.push({
+                            title: data[i].title,
+                            description: data[i].report,
+                            id: data[i].id
+                        })
+                    }
+
+                    setUpTourListHTML(tourList)
+                })
+
             document.getElementById("tourChooser").style.display = "flex"
         }
 
