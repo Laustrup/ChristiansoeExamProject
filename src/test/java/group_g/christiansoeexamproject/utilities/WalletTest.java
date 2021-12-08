@@ -13,11 +13,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 class WalletTest {
-
-    //TODO:!!!!!!!!!!!!!!!!!!!!
-    //Probably need to autowire repos instead of constructor (Like FlyAdminProject)
 
     private Wallet wallet;
 
@@ -62,7 +60,7 @@ class WalletTest {
         Tour expected = new Tour(expectedTitle,expectedReport,listOfLocations);
 
         // Act
-        Tour actual = (Tour)wallet.getObject(expected.getTitle());
+        Tour actual = (Tour)wallet.getObject(expectedTitle);
 
         // Assert
         assertEquals(true,wallet.doesExist(expected.getTitle()));
@@ -80,8 +78,7 @@ class WalletTest {
 
                         "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg|" +
                         "Sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav"}, delimiter = '|')
-    public void locationTest(String expectedTitle, String expectedReport,
-                             double longitude, double latitude,
+    public void locationTest(String expectedTitle, String expectedReport, double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
         // Arrange
         String[] images = expectedImages.split("_");
@@ -124,13 +121,13 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg",delimiter = '|')
+    @CsvSource(value = "Sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\images\\seal.jpeg",delimiter = '|')
     public void imageTest(String expectedTitle,String expectedFilePath) {
         // Arrange
-        Sound expected = new Sound(expectedTitle,expectedFilePath);
+        Image expected = new Image(expectedTitle,expectedFilePath);
 
         // Act
-        Sound act = new Sound(expectedTitle,expectedFilePath);
+        Image act = (Image) wallet.getObject(expectedTitle);
 
         // Assert
         assertEquals(expected.getTitle(),act.getTitle());
@@ -139,16 +136,16 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "sæl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav",delimiter = '|')
+    @CsvSource(value = "Sæl hyl|C:\\Users\\Laust\\IdeaProjects\\ChristiansoeExamProject\\src\\main\\resources\\static\\sounds\\seal.wav",delimiter = '|')
     public void soundTest(String expectedTitle,String expectedFilePath) {
         // Arrange
-        Image expected = new Image(expectedTitle,expectedFilePath);
+        Sound expected = new Sound(expectedTitle,expectedFilePath);
 
         // Act
-        Image act = (Image) wallet.getObject(expectedTitle);
+        Sound act = (Sound) wallet.getObject(expectedTitle);
 
         // Assert
-        assertEquals(expected.getTitle(),act.getFilePath());
+        assertEquals(expected.getTitle(),act.getTitle());
         assertEquals(expected.getFilePath(),act.getFilePath());
 
     }
