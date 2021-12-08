@@ -10,8 +10,10 @@ public class Wallet {
     private static Wallet wallet;
 
     public static Wallet getWallet(){
-        if(wallet == null) return new Wallet();
-        else return wallet;
+        if(wallet == null){
+            wallet = new Wallet();
+        }
+        return wallet;
     }
 
     private Map<String, Object> inventory;
