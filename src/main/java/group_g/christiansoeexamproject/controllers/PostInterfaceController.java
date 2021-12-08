@@ -20,7 +20,7 @@ public class PostInterfaceController {
     }
 
     @GetMapping("/location?={id}")
-    public ResponseEntity<Location> giveLocation(@PathVariable (name = "id") String id) {
-        return new ResponseEntity<>((Location) wallet.getObject(id), HttpStatus.OK);
+    public ResponseEntity<Location> giveLocation(@PathVariable (name = "id") int id) {
+        return new ResponseEntity<>(wallet.getLocation(id), HttpStatus.OK);
     }
 }

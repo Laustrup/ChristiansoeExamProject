@@ -55,7 +55,6 @@ public class Wallet {
         }
     }
 
-
     // Updates the inbox - Needs connection for the database
     public Map<String, Object> update() {
         inventory.clear();
@@ -73,23 +72,23 @@ public class Wallet {
 
         // Puts the lists from the database into the inbox as keys from the objects titles
         for (int i = 0; i < tours.size();i++) {
-            inventory.put(String.valueOf(tours.get(i).getId()),tours.get(i));
+            inventory.put("Tour id: "+tours.get(i).getId(),tours.get(i));
             inventory.put(tours.get(i).getTitle(),tours.get(i));
         }
         for (int i = 0; i < locations.size();i++) {
-            inventory.put(String.valueOf(locations.get(i).getId()),locations.get(i));
+            inventory.put("Location id: "+locations.get(i).getId(),locations.get(i));
             inventory.put(locations.get(i).getTitle(),locations.get(i));
         }
         for (int i = 0; i < animals.size();i++) {
-            inventory.put(String.valueOf(animals.get(i).getId()),animals.get(i));
+            inventory.put("Animal id: "+animals.get(i).getId(),animals.get(i));
             inventory.put(animals.get(i).getTitle(),animals.get(i));
         }
         for (int i = 0; i < images.size();i++) {
-            inventory.put(String.valueOf(images.get(i).getId()),images.get(i));
+            inventory.put("Image id: "+(images.get(i).getId()),images.get(i));
             inventory.put(images.get(i).getTitle(),images.get(i));
         }
         for (int i = 0; i < sounds.size();i++) {
-            inventory.put(String.valueOf(sounds.get(i).getId()),sounds.get(i));
+            inventory.put("Sound id: "+sounds.get(i).getId(),sounds.get(i));
             inventory.put(sounds.get(i).getTitle(),sounds.get(i));
         }
 
@@ -98,6 +97,12 @@ public class Wallet {
 
     public Object getObject(String key) {
         return inventory.get(key);
+    }
+    public Tour getTour(int id) {
+        return (Tour) inventory.get("Tour id: "+id);
+    }
+    public Location getLocation(int id) {
+        return (Location) inventory.get("Location id: "+id);
     }
 
     // Returns true if key exists and replaces the key's value with method's value parameter
