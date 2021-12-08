@@ -30,8 +30,8 @@ public class TourInterfaceController {
         return new ResponseEntity<>(wallet.getAllLocations(), HttpStatus.OK);
     }
 
-    @GetMapping("/tour?={id}")
-    public ResponseEntity<Tour> giveTour(@PathVariable (name="id") int id) {
+    @GetMapping("/tour")
+    public ResponseEntity<Tour> giveTour(@RequestParam int id) {
         return new ResponseEntity<>(wallet.getTour(id),HttpStatus.OK);
     }
 
