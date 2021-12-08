@@ -80,15 +80,15 @@ public class Wallet {
             inventory.put(locations.get(i).getTitle(),locations.get(i));
         }
         for (int i = 0; i < animals.size();i++) {
-            inventory.put(String.valueOf(animals.get(i).getId()),animals.get(i));
+            inventory.put("Animal id: "+animals.get(i).getId(),animals.get(i));
             inventory.put(animals.get(i).getTitle(),animals.get(i));
         }
         for (int i = 0; i < images.size();i++) {
-            inventory.put(String.valueOf(images.get(i).getId()),images.get(i));
+            inventory.put("Image id: "+(images.get(i).getId()),images.get(i));
             inventory.put(images.get(i).getTitle(),images.get(i));
         }
         for (int i = 0; i < sounds.size();i++) {
-            inventory.put(String.valueOf(sounds.get(i).getId()),sounds.get(i));
+            inventory.put("Sound id: "+sounds.get(i).getId(),sounds.get(i));
             inventory.put(sounds.get(i).getTitle(),sounds.get(i));
         }
 
