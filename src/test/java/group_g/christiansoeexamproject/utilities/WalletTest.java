@@ -127,7 +127,7 @@ class WalletTest {
         Image expected = new Image(expectedTitle,expectedFilePath);
 
         // Act
-        Image act = new Image(expectedTitle,expectedFilePath);
+        Image act = (Image) wallet.getObject(expectedTitle);
 
         // Assert
         assertEquals(expected.getTitle(),act.getTitle());
