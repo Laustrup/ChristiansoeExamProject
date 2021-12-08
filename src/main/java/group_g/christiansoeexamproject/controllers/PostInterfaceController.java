@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PostInterfaceController {
 
-    private Wallet wallet;
+    private final Wallet wallet;
 
     public PostInterfaceController(LocationRepository locationRepo){
         wallet = Wallet.getWallet();

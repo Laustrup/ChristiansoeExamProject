@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MediaController {
 
-    private Wallet wallet;
+    private final Wallet wallet;
 
     public MediaController(AnimalRepository animalRepo, ImageRepository imageRepo, SoundRepository soundRepo) {
         wallet = Wallet.getWallet();
