@@ -55,7 +55,6 @@ public class Wallet {
         }
     }
 
-
     // Updates the inbox - Needs connection for the database
     public Map<String, Object> update() {
         inventory.clear();
@@ -73,7 +72,7 @@ public class Wallet {
 
         // Puts the lists from the database into the inbox as keys from the objects titles
         for (int i = 0; i < tours.size();i++) {
-            inventory.put(String.valueOf(tours.get(i).getId()),tours.get(i));
+            inventory.put("Tour id: "+String.valueOf(tours.get(i).getId()),tours.get(i));
             inventory.put(tours.get(i).getTitle(),tours.get(i));
         }
         for (int i = 0; i < locations.size();i++) {

@@ -32,7 +32,7 @@ public class TourInterfaceController {
 
     @GetMapping("/tour?={id}")
     public ResponseEntity<Tour> giveTour(@PathVariable (name="id") String id) {
-        return new ResponseEntity<>((Tour)wallet.getObject(id),HttpStatus.OK);
+        return new ResponseEntity<>((Tour)wallet.getObject("Tour id: "+id),HttpStatus.OK);
     }
 
 }

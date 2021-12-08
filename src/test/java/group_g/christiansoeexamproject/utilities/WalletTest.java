@@ -44,7 +44,7 @@ class WalletTest {
 
     @BeforeEach
     public void beforeEach() {
-        wallet = new Wallet();
+        wallet.update();
     }
 
     @ParameterizedTest
