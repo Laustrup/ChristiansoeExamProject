@@ -1,7 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <h1>Lol this works</h1>
+    <div class="postOuterFlex">
+        <div class="postTitleReportFlex">
+            <h1 id="postTitle"></h1>
+            <p id="postReport"></p>
+        </div>
+        <div class="postSoundFlex">
+
+        </div>
+        <div class="postImageFlex">
+
+        </div>
+        <div class="postAnimalFlex">
+
+        </div>
+
+    </div>
 
     <script>
 
@@ -14,6 +29,8 @@
                     return response.json()
                 })
                 .then((data) => {
+                    document.getElementById("postTitle").innerText = data.title
+                    document.getElementById("postReport").innerText = data.report
                     console.log(data)
                 })
         }
