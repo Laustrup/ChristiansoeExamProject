@@ -55,38 +55,41 @@ class WalletTest {
 
         // Assert
         assertEquals(true,wallet.doesExist(expected.getTitle()));
-        assertEquals(expected.getReport(),actual.getReport());
+        assertEquals(expected.getReport(), actual.getReport());
 
-        for (int i = 0; i < expected.getLocations().size();i++) {
-            //assertEquals(expected.getLocations().get(i).getTitle(),actual.getLocations().get(i).getTitle());
+        for (int i = 0; i < expected.getLocations().size(); i++) {
+            //TODO: den laver Failed to lazily initialize.. for "locations" og derfor kan actual ikke få en titel.
+           // assertEquals(expected.getLocations().get(i).getTitle(),actual.getLocations().get(i).getTitle());
         }
     }
 
     @ParameterizedTest
     @CsvSource(value = {"Danmarks østligeste punkt|Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!|" +
-                        "15.192853298391688|55.32029540616608|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/images/seal.jpeg|" +
-                        "Sæl|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/sounds/seal.wav" ,
+                        "15.192853298391688|55.32029540616608|Sæl|" +
+                        "Sæl|Sæl" ,
 
-                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/images/seal.jpeg|" +
-                        "Sæl|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/sounds/seal.wav"}, delimiter = '|')
+                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|Sæl|" +
+                        "Sæl|Sæl"}, delimiter = '|')
     public void locationTest(String expectedTitle, String expectedReport, double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
         // Arrange
         String[] images = expectedImages.split("_");
         LinkedList<Image> listOfImages = new LinkedList();
         for (int i = 0; i < images.length; i++) {
-            System.out.println(images[i]);
             listOfImages.add((Image)wallet.getObject(images[i]));
         }
+
         String[] animals = expectedAnimals.split("_");
         LinkedList<Animal> listOfAnimals = new LinkedList();
         for (int i = 0; i < animals.length; i++) {
-            //listOfAnimals.add((Animal)wallet.getObject(animals[i]));
-            System.out.println(animals[i]);
+            //Kan ikke tilføje nedenunder, pga. den forventer et Image....
+            listOfAnimals.add((Animal)wallet.getObject(animals[i]));
         }
+
         String[] sounds = expectedSounds.split("_");
         LinkedList<Sound> listOfSounds = new LinkedList();
         for (int i = 0; i < sounds.length; i++) {
+            //Samme problem som i forrige for loop....
             listOfSounds.add((Sound)wallet.getObject(sounds[i]));
         }
 
@@ -144,5 +147,4 @@ class WalletTest {
         assertEquals(expected.getFilePath(),act.getFilePath());
 
     }
-
 }
