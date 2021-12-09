@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -35,6 +36,7 @@ class WalletTest {
         wallet = Wallet.getWallet();
         wallet.injectRepos(tourRepo,locationRepo,animalRepo,imageRepo,soundRepo);
     }
+
 
 //TODO: Denne test skaber problemer, ift. "failed to lazily initialize a collection of role...". Skal fikses.
 
@@ -66,10 +68,10 @@ class WalletTest {
     @ParameterizedTest
     @CsvSource(value = {"Danmarks østligeste punkt|Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!|" +
                         "15.192853298391688|55.32029540616608|Sæl|" +
-                        "Sæl|Sæl" ,
+                        "1|Sæl hyl" ,
 
                         "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|Sæl|" +
-                        "Sæl|Sæl"}, delimiter = '|')
+                        "1|Sæl hyl"}, delimiter = '|')
     public void locationTest(String expectedTitle, String expectedReport, double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
         // Arrange
@@ -100,15 +102,16 @@ class WalletTest {
         Attraction actual = (Attraction) wallet.getObject(expectedTitle);
 
         // Assert
-        assertEquals(true,wallet.doesExist(expected.getTitle()));
-        assertEquals(expected.getReport(),actual.getReport());
-        assertEquals(expected.getLongitude(),actual.getLongitude());
-        assertEquals(expected.getLatitude(),actual.getLatitude());
+        assertEquals(true, wallet.doesExist(expected.getTitle()));
+        assertEquals(expected.getReport(), actual.getReport());
+        assertEquals(expected.getLongitude(), actual.getLongitude());
+        assertEquals(expected.getLatitude(), actual.getLatitude());
 
-        for (int i = 0; i < expected.getAnimals().size();i++) {
-            assertEquals(expected.getAnimals().get(i).getTitle(),actual.getAnimals().get(i).getTitle());
+        for (int i = 0; i < expected.getAnimals().size(); i++) {
+            //Både problemer med expected og actual.
+            assertEquals(expected.getAnimals().get(i).getTitle(), actual.getAnimals().get(i).getTitle());
         }
-        for (int i = 0; i < expected.getSounds().size();i++) {
+        for (int i = 0; i < expected.getSounds().size(); i++) {
             //TODO: expected.getSounds().get(i).getFilePath() returnerer null???
 //            assertEquals(expected.getSounds().get(i).getFilePath(),actual.getSounds().get(i).getFilePath());
         }
