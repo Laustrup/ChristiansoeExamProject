@@ -16,6 +16,7 @@ public class PostInterfaceController {
 
     @GetMapping("/location")
     public ResponseEntity<Location> giveLocation(@RequestParam int id) {
+        System.out.println(wallet.getLocation(id));
         return new ResponseEntity<>(wallet.getLocation(id), HttpStatus.OK);
     }
 }

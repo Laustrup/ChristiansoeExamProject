@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Wallet {
 
-    private static Wallet wallet = new Wallet();
+    private static Wallet wallet;
 
     public static Wallet getWallet(){
         if(wallet == null){
@@ -18,7 +18,7 @@ public class Wallet {
         return wallet;
     }
 
-    private Map<String, Object> inventory = new HashMap<>();
+    private final Map<String, Object> inventory = new HashMap<>();
 
     private TourRepository tourRepo;
     private LocationRepository locationRepo;
@@ -26,15 +26,15 @@ public class Wallet {
     private ImageRepository imageRepo;
     private SoundRepository soundRepo;
 
-    public void injectRepos(TourRepository tourRepo,LocationRepository locationRepo,AnimalRepository animalRepo,
+    public static void injectRepos(TourRepository tourRepo,LocationRepository locationRepo,AnimalRepository animalRepo,
                        ImageRepository imageRepo, SoundRepository soundRepo) {
 
-        this.tourRepo = tourRepo;
-        this.locationRepo = locationRepo;
-        this.animalRepo = animalRepo;
-        this.imageRepo = imageRepo;
-        this.soundRepo = soundRepo;
-        update();
+        wallet.tourRepo = tourRepo;
+        wallet.locationRepo = locationRepo;
+        wallet.animalRepo = animalRepo;
+        wallet.imageRepo = imageRepo;
+        wallet.soundRepo = soundRepo;
+        wallet.update();
     }
 
     // Updates the inbox - Needs connection for the database
@@ -84,6 +84,7 @@ public class Wallet {
         return (Tour) inventory.get("Tour id: "+id);
     }
     public Location getLocation(int id) {
+
         return (Location) inventory.get("Location id: "+id);
     }
 
