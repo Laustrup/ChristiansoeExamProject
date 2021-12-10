@@ -22,17 +22,18 @@ public abstract class Location {
     @Column
     private double latitude;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Image> images;
 
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Sound> sounds;
 
-    @ManyToMany(mappedBy = "locations")
+    @ManyToMany(mappedBy = "locations", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("locations")
     private List<Tour> tours;
+
 
     public Location(String title, String report, double longitude, double latitude, List<Image> images, List<Sound> sounds){
         this.title = title;

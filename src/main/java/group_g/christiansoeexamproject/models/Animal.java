@@ -18,15 +18,15 @@ public class Animal {
     private String report;
 
 
-    @OneToMany(mappedBy = "animal")
+    @OneToMany(mappedBy = "animal", cascade =  CascadeType.ALL)
     @JsonBackReference
     private List<Image> images;
 
-    @OneToMany(mappedBy = "animal")
+    @OneToMany(mappedBy = "animal", cascade = CascadeType.ALL)
     @JsonBackReference
     private List<Sound> sounds;
 
-    @ManyToMany
+    @ManyToMany()
     @JoinColumn(name="animals")
     private List<Location> locations;
 

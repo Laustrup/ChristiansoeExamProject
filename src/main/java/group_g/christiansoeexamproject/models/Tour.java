@@ -16,7 +16,7 @@ public class Tour {
     @Column
     private String report;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinColumn(name="tour_location")
     private List<Location> locations;
 

@@ -17,11 +17,11 @@ public class Sound {
     @Column
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="sound_animal")
     private Animal animal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="sound_location")
     private Location location;
 
