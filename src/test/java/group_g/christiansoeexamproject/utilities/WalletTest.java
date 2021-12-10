@@ -2,6 +2,7 @@ package group_g.christiansoeexamproject.utilities;
 
 import group_g.christiansoeexamproject.models.*;
 import group_g.christiansoeexamproject.repositories.*;
+import org.hibernate.Hibernate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -61,17 +62,17 @@ class WalletTest {
 
         for (int i = 0; i < expected.getLocations().size(); i++) {
             //TODO: den laver Failed to lazily initialize.. for "locations" og derfor kan actual ikke få en titel.
-           // assertEquals(expected.getLocations().get(i).getTitle(),actual.getLocations().get(i).getTitle());
+             assertEquals(expected.getLocations().get(i).getTitle(),actual.getLocations().get(i).getTitle());
         }
     }
 
     @ParameterizedTest
     @CsvSource(value = {"Danmarks østligeste punkt|Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!|" +
-                        "15.192853298391688|55.32029540616608|Sæl|" +
-                        "1|Sæl hyl" ,
+                        "15.192853298391688|55.32029540616608|Sæl billede|" +
+                        "Sæl|Sæl hyl lyd" ,
 
-                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|Sæl|" +
-                        "1|Sæl hyl"}, delimiter = '|')
+                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|Sæl billede|" +
+                        "Sæl|Sæl hyl lyd"}, delimiter = '|')
     public void locationTest(String expectedTitle, String expectedReport, double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
         // Arrange
@@ -84,14 +85,12 @@ class WalletTest {
         String[] animals = expectedAnimals.split("_");
         LinkedList<Animal> listOfAnimals = new LinkedList();
         for (int i = 0; i < animals.length; i++) {
-            //Kan ikke tilføje nedenunder, pga. den forventer et Image....
             listOfAnimals.add((Animal)wallet.getObject(animals[i]));
         }
 
         String[] sounds = expectedSounds.split("_");
         LinkedList<Sound> listOfSounds = new LinkedList();
         for (int i = 0; i < sounds.length; i++) {
-            //Samme problem som i forrige for loop....
             listOfSounds.add((Sound)wallet.getObject(sounds[i]));
         }
 
@@ -113,16 +112,17 @@ class WalletTest {
         }
         for (int i = 0; i < expected.getSounds().size(); i++) {
             //TODO: expected.getSounds().get(i).getFilePath() returnerer null???
-//            assertEquals(expected.getSounds().get(i).getFilePath(),actual.getSounds().get(i).getFilePath());
+            System.out.println(expected.getSounds().size());
+            assertEquals(expected.getSounds().get(i).getFilePath(), actual.getSounds().get(i).getFilePath());
         }
-        for (int i = 0; i < expected.getImages().size();i++) {
+        for (int i = 0; i < expected.getImages().size(); i++) {
             //TODO: expected.getImages().get(i).getFilePath() returnerer null???
-            //assertEquals(expected.getImages().get(i).getFilePath(),actual.getImages().get(i).getFilePath());
+            assertEquals(expected.getImages().get(i).getFilePath(),actual.getImages().get(i).getFilePath());
         }
     }
 
     @ParameterizedTest
-    @CsvSource(value = "Sæl|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/images/seal.jpeg",delimiter = '|')
+    @CsvSource(value = "Sæl billede|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/images/seal.jpeg",delimiter = '|')
     public void imageTest(String expectedTitle,String expectedFilePath) {
         // Arrange
         Image expected = new Image(expectedTitle,expectedFilePath);
@@ -137,7 +137,7 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "Sæl hyl|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/sounds/seal.wav",delimiter = '|')
+    @CsvSource(value = "Sæl hyl lyd|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/sounds/seal.wav",delimiter = '|')
     public void soundTest(String expectedTitle,String expectedFilePath) {
         // Arrange
         Sound expected = new Sound(expectedTitle,expectedFilePath);

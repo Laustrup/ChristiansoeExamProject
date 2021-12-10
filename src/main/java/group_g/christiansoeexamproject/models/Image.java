@@ -18,12 +18,12 @@ public class Image {
     @Column
     private String title;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="image_animal")
     @JsonManagedReference
     private Animal animal;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="image_location")
     @JsonManagedReference
     private Location location;
