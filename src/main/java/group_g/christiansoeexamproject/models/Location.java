@@ -30,7 +30,7 @@ public abstract class Location {
     @JsonBackReference
     private List<Sound> sounds;
 
-    @ManyToMany(mappedBy = "locations")
+    @ManyToMany(mappedBy = "locations", fetch = FetchType.EAGER)
     @JsonIgnoreProperties("locations")
     private List<Tour> tours;
 
