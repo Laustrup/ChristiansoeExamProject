@@ -71,8 +71,8 @@ class WalletTest {
                         "15.192853298391688|55.32029540616608|Sæl billede|" +
                         "Sæl|Sæl hyl lyd" ,
 
-                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|Sæl billede|" +
-                        "Sæl|Sæl hyl lyd"}, delimiter = '|')
+                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|Lektier|" +
+                        "Sæl|Homework"}, delimiter = '|')
     public void locationTest(String expectedTitle, String expectedReport, double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
         // Arrange
@@ -107,17 +107,13 @@ class WalletTest {
         assertEquals(expected.getLatitude(), actual.getLatitude());
 
         for (int i = 0; i < expected.getAnimals().size(); i++) {
-            //Både problemer med expected og actual.
             assertEquals(expected.getAnimals().get(i).getTitle(), actual.getAnimals().get(i).getTitle());
         }
         for (int i = 0; i < expected.getSounds().size(); i++) {
-            //TODO: expected.getSounds().get(i).getFilePath() returnerer null???
-            System.out.println(expected.getSounds().size());
             assertEquals(expected.getSounds().get(i).getFilePath(), actual.getSounds().get(i).getFilePath());
         }
         for (int i = 0; i < expected.getImages().size(); i++) {
-            //TODO: expected.getImages().get(i).getFilePath() returnerer null???
-            assertEquals(expected.getImages().get(i).getFilePath(),actual.getImages().get(i).getFilePath());
+            assertEquals(expected.getImages().get(i).getFilePath(), actual.getImages().get(i).getFilePath());
         }
     }
 

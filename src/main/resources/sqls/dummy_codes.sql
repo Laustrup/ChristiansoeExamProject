@@ -10,9 +10,13 @@ INSERT INTO location(dtype, title,report,longitude,latitude) VALUES ("Attraction
 
 INSERT INTO image(file_path, title, image_animal, image_location)
 VALUES ("C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/images/seal.jpeg", "Sæl billede", null,1);
+INSERT INTO image(file_path, title, image_animal, image_location)
+VALUES ("C:/Users/Patrick/HemmeligMappe/BillederAfLaust.jpeg", "Lektier", null, 2);
 
 INSERT INTO sound(file_path, title, sound_animal, sound_location)
 VALUES ("C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/sounds/seal.wav", "Sæl hyl lyd", null,1);
+INSERT INTO sound(file_path, title, sound_animal, sound_location)
+VALUES ("C:/Users/Patrick/HemmeligMappe/BillederAfLaust.jpeg", "Homework", null, 2);
 
 INSERT INTO animal_locations(animals_id,locations_id) VALUES (1,1);
 INSERT INTO animal_locations(animals_id,locations_id) VALUES (1,2);
