@@ -1,41 +1,40 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <div class="postOuterFlex">
-        <div class="postTitleReportFlex">
-            <h1 id="postTitle"></h1>
-            <p id="postReport"></p>
-        </div>
-        <div class="postSoundFlex">
-            <audio controls>
-                <source src="../../../static/sounds/seal.wav" type="audio/wav">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-        <div class="postImageFlex">
-            <img src="../../../static/images/seal.jpeg" alt="Picture of a seal">
-        </div>
-        <div class="postAnimalFlex">
+    <section class="postOuterFlex">
+        <section class="postTitleReportFlex">
+            <h1 id="Title"></h1>
+            <p id="Report"></p>
+        </section>
 
-        </div>
+        <section class="postSoundFlex" id="Sounds">
+            <ul th:each="sound : ${sounds}">
+                <li>
+                    <audio controls>
+                        <source th:src="@{sound.getFilePath()}" type="audio/wav">
+                    </audio>
+                </li>
+            </ul>
+        </section>
 
-    </div>
+        <section class="postImageFlex" id="Images">
+            <ul th:each="image : ${images}">
+                <li><img th:src="@{image.getFilePath()}" alt="Couldn't show image..."></li>
+            </ul>
+        </section>
 
-    <script>
+        <section class="postAnimalFlex" id="Animals">
+            <ul th:each="animal : ${animals}">
+                <li>
+                    <section class="animalPost">
 
-        getPost()
-        function getPost(){
-            let id = sessionStorage.getItem("locationId")
+                    </section>
+                </li>
+            </ul>
+        </section>
 
-            fetch("http://localhost:8080/location?id=" + id)
-                .then((response) => {
-                    return response.json()
-                })
-                .then((data) => {
-                    document.getElementById("postTitle").innerText = data.title
-                    document.getElementById("postReport").innerText = data.report
-                    console.log(data)
-                })
-        }
-    </script>
+    </section>
+
+    <script th:replace="../../JSs/post_fetch.js"></script>
+
 </html>
