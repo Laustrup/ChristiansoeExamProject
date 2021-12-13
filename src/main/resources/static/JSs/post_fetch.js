@@ -9,9 +9,9 @@ function getPost(){
         .then((data) => {
             document.getElementById("Title").innerText = data.title
             document.getElementById("Report").innerText = data.report
-            document.getElementById("Images").innerText = data.images
-            document.getElementById("Sounds").innerText = data.sounds
-            document.getElementById("Animals").innerText = data.animals
+            document.getElementById("Images").dataset = data.images
+            document.getElementById("Sounds").dataset = data.sounds
+            document.getElementById("Animals").dataset = data.animals
             console.log(data)
         })
 }
