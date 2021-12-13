@@ -69,29 +69,35 @@ class WalletTest {
     @ParameterizedTest
     @CsvSource(value = {"Danmarks østligeste punkt|Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!|" +
                         "15.192853298391688|55.32029540616608|Sæl billede|" +
-                        "Sæl|Sæl hyl lyd" ,
+                        "Sæl|Sæl hyl lyd",
 
-                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616|Lektier|" +
-                        "Sæl|Homework"}, delimiter = '|')
+                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616||" +
+                        "Sæl|"}, delimiter = '|')
     public void locationTest(String expectedTitle, String expectedReport, double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
         // Arrange
-        String[] images = expectedImages.split("_");
         LinkedList<Image> listOfImages = new LinkedList();
-        for (int i = 0; i < images.length; i++) {
-            listOfImages.add((Image)wallet.getObject(images[i]));
+        LinkedList<Animal> listOfAnimals = new LinkedList();
+        LinkedList<Sound> listOfSounds = new LinkedList();
+
+        if (expectedImages!=null) {
+            String[] images = expectedImages.split("_");
+            for (int i = 0; i < images.length; i++) {
+                listOfImages.add((Image)wallet.getObject(images[i]));
+            }
         }
 
         String[] animals = expectedAnimals.split("_");
-        LinkedList<Animal> listOfAnimals = new LinkedList();
         for (int i = 0; i < animals.length; i++) {
             listOfAnimals.add((Animal)wallet.getObject(animals[i]));
         }
 
-        String[] sounds = expectedSounds.split("_");
-        LinkedList<Sound> listOfSounds = new LinkedList();
-        for (int i = 0; i < sounds.length; i++) {
-            listOfSounds.add((Sound)wallet.getObject(sounds[i]));
+
+        if (expectedSounds!=null) {
+            String[] sounds = expectedSounds.split("_");
+            for (int i = 0; i < sounds.length; i++) {
+                listOfSounds.add((Sound)wallet.getObject(sounds[i]));
+            }
         }
 
         Attraction expected = new Attraction(expectedTitle,expectedReport,longitude,latitude,
@@ -118,7 +124,7 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "Sæl billede|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/images/seal.jpeg",delimiter = '|')
+    @CsvSource(value = "Sæl billede|.../static/images/seal.jpeg",delimiter = '|')
     public void imageTest(String expectedTitle,String expectedFilePath) {
         // Arrange
         Image expected = new Image(expectedTitle,expectedFilePath);
@@ -133,7 +139,7 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "Sæl hyl lyd|C:/Users/Laust/IdeaProjects/ChristiansoeExamProject/src/main/resources/static/sounds/seal.wav",delimiter = '|')
+    @CsvSource(value = "Sæl hyl lyd|.../static/sounds/seal.wav",delimiter = '|')
     public void soundTest(String expectedTitle,String expectedFilePath) {
         // Arrange
         Sound expected = new Sound(expectedTitle,expectedFilePath);
