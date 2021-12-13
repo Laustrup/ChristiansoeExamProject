@@ -27,7 +27,28 @@
             <ul th:each="animal : ${animals}">
                 <li>
                     <section class="animalPost">
+                        <section class="postTitleReportFlex">
+                            <h1 th:text="${animal.getTitle()}"></h1>
+                            <p th:text="${animal.getReport()}"></p>
+                        </section>
 
+                        <div>
+                            <ul th:each="image : ${animal.getImages()}">
+                                <li>
+                                    <img th:src="${image.getFilePath()}">
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <ul th:each="sound : ${animal.getSounds}">
+                                <li>
+                                    <audio controls>
+                                        <source th:src="@{sound.getFilePath()}" type="audio/wav">
+                                    </audio>
+                                </li>
+                            </ul>
+                        </div>
                     </section>
                 </li>
             </ul>
@@ -35,6 +56,6 @@
 
     </section>
 
-    <script th:src="@{JSs/post_fetch.js}"></script>
+    <script th:replace="/templates/JSs/post_fetch.js"></script>
 
 </html>
