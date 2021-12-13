@@ -64,7 +64,7 @@ public class Animal {
         this.report = report;
     }
 
-    public List<Image> getImage() {
+    public List<Image> getImages() {
         return images;
     }
 
@@ -72,7 +72,7 @@ public class Animal {
         this.images = images;
     }
 
-    public List<Sound> getSound() {
+    public List<Sound> getSounds() {
         return sounds;
     }
 
