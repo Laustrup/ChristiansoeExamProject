@@ -64,19 +64,19 @@ public class Animal {
         this.report = report;
     }
 
-    public List<Image> getImage() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public void setImage(List<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
-    public List<Sound> getSound() {
+    public List<Sound> getSounds() {
         return sounds;
     }
 
-    public void setSound(List<Sound> sounds) {
+    public void setSounds(List<Sound> sounds) {
         this.sounds = sounds;
     }
 
