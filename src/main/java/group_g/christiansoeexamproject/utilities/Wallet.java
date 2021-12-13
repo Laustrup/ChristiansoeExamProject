@@ -85,7 +85,7 @@ public class Wallet {
     }
     public Location getLocation(int id) {
 
-        return (Location) inventory.get("Location id: "+id);
+        return (Location) inventory.get("Location id: " + id);
     }
 
     // Returns true if key exists and replaces the key's value with method's value parameter
