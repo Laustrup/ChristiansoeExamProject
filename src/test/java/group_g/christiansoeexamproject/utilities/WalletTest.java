@@ -87,9 +87,11 @@ class WalletTest {
             }
         }
 
-        String[] animals = expectedAnimals.split("_");
-        for (int i = 0; i < animals.length; i++) {
-            listOfAnimals.add((Animal)wallet.getObject(animals[i]));
+        if (expectedAnimals!=null) {
+            String[] animals = expectedAnimals.split("_");
+            for (int i = 0; i < animals.length; i++) {
+                listOfAnimals.add((Animal)wallet.getObject(animals[i]));
+            }
         }
 
 
@@ -124,7 +126,7 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "Sæl billede|.../static/images/seal.jpeg",delimiter = '|')
+    @CsvSource(value = "Sæl billede|/images/seal.jpeg",delimiter = '|')
     public void imageTest(String expectedTitle,String expectedFilePath) {
         // Arrange
         Image expected = new Image(expectedTitle,expectedFilePath);
@@ -139,7 +141,7 @@ class WalletTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = "Sæl hyl lyd|.../static/sounds/seal.wav",delimiter = '|')
+    @CsvSource(value = "Sæl hyl lyd|/sounds/seal.wav",delimiter = '|')
     public void soundTest(String expectedTitle,String expectedFilePath) {
         // Arrange
         Sound expected = new Sound(expectedTitle,expectedFilePath);
