@@ -35,7 +35,7 @@
                         <div>
                             <ul th:each="image : ${animal.getImages()}">
                                 <li>
-                                    <img th:src="${image.getFilePath()}">
+                                    <img th:src="@{image.getFilePath()}">
                                 </li>
                             </ul>
                         </div>
@@ -56,6 +56,6 @@
 
     </section>
 
-    <script th:replace="/templates/JSs/post_fetch.js"></script>
+    <script th:src="@{JSs/post_fetch.js}"></script>
 
 </html>
