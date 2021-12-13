@@ -68,7 +68,7 @@ public class Animal {
         return images;
     }
 
-    public void setImage(List<Image> images) {
+    public void setImages(List<Image> images) {
         this.images = images;
     }
 
@@ -76,7 +76,7 @@ public class Animal {
         return sounds;
     }
 
-    public void setSound(List<Sound> sounds) {
+    public void setSounds(List<Sound> sounds) {
         this.sounds = sounds;
     }
 
