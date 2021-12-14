@@ -1,9 +1,11 @@
 
 const map = createMap()
+const routeCache = makeTourCache()
 setUpHandlers()
 
 //TODO: Remove temporary stuff
 setUpLocationChooser()
+
 
 function createMap() {
     mapboxgl.accessToken = 'pk.eyJ1IjoiZ2Vvd2FsbCIsImEiOiJja3dvc28yeHkwNjBjMm9sMHB1NGlkdTJsIn0.-zQAF2T_9EOKLHEGnbUV4w';
@@ -30,7 +32,7 @@ async function getRoute(start, end){
     const json = await response.json()
     const data = json.routes[0]
     const route = data.geometry.coordinates
-    const geojson = {
+    return {
         type: 'Feature',
         properties: {},
         geometry: {
@@ -38,10 +40,9 @@ async function getRoute(start, end){
             coordinates: route
         }
     }
-    return geojson
 }
 
-async function showRoute(geojson){
+function showRoute(geojson){
     if (map.getSource('route')) {
         map.getSource('route').setData(geojson);
     }
@@ -136,6 +137,9 @@ async function getTour(id){
     const response = await fetch("http://localhost:8080/tour?id=" + id)
     const data = await response.json()
 
+    await routeCache.saveTour(data)
+    routeCache.getNextStep()
+
     document.getElementById("loadingPrompt").style.display = "none"
 }
 
@@ -152,12 +156,55 @@ function generateTourListHTML(tours){
         let rowId = "tour_" + i
         finalHTML +=
             `<tr id=${rowId}  data-selected="no" data-id=${tours[i].id}>
-                        <td>${tours[i].title}</td>
-                        <td>${tours[i].description}</td>
-                    </tr>
-                    `
+                <td>${tours[i].title}</td>
+                <td>${tours[i].description}</td>
+            </tr>
+            `
     }
     return finalHTML
+}
+
+function makeTourCache(){
+    let routeList = []
+    let currentStep
+    return {
+        saveTour: async function(tour){
+            currentStep = 0
+
+            const initialStart = [15.186091, 55.320772]
+            const initialEnd = [tour.locations[0].longitude, tour.locations[0].latitude]
+            const initialId = tour.locations[0].id
+            routeList[0] = await makeRouteObject(initialStart, initialEnd, initialId)
+
+            for(let i = 1; i < tour.locations.length; i++){
+                const startLocation = tour.locations[i-1]
+                const startLocationCoordinates = [startLocation.longitude, startLocation.latitude]
+                const endLocation = tour.locations[i]
+                const endLocationCoordinates = [endLocation.longitude, endLocation.latitude]
+                const id = tour.locations[i].id
+
+                routeList[i] = await makeRouteObject(startLocationCoordinates, endLocationCoordinates, id)
+            }
+        },
+        getNextStep: function(){
+
+            const directions = routeList[currentStep].geojson
+            showRoute(directions)
+            currentStep++
+
+            //TODO: Do something if last step
+        }
+    }
+}
+
+async function makeRouteObject(start, end, id){
+    let geojson = await getRoute(start, end)
+    return{
+        start: start,
+        end: end,
+        geojson: geojson,
+        id: id
+    }
 }
 
 //TODO: Delete this shit
