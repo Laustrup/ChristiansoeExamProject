@@ -193,12 +193,16 @@ function makeRouteCache(){
 
         getNextStep: () => {
 
+            if(currentStep >= routeList.length){
+                routeList = []
+                showEndText()
+                return
+            }
+
             const data = routeList[currentStep].data
 
             showRoute(data)
             showInstructions(data)
-
-            //TODO: Do something if last step
         },
 
         userArrived: () => {
@@ -221,15 +225,21 @@ async function makeRouteObject(start, end, postId){
 }
 
 function showInstructions(data){
-    const instructions = document.getElementById('instructions');
-    const steps = data.legs[0].steps;
+    const instructions = document.getElementById("instructions")
+    const steps = data.legs[0].steps
 
-    let tripInstructions = '';
+    let tripInstructions = ""
     for (const step of steps) {
-        tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+        tripInstructions += `<li>${step.maneuver.instruction}</li>`
     }
-    instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
-        data.duration / 60
-    )} min </strong></p><ol>${tripInstructions}</ol>`;
+
+    let tourDuration = Math.floor(data.duration / 60)
+    instructions.innerHTML =
+        `<p><strong>Trip duration: ${tourDuration} min </strong></p>
+        <ol>${tripInstructions}</ol>`
 }
 
+function showEndText(){
+    const instructions = document.getElementById('instructions')
+    instructions.innerHTML = `<p><strong>Turen er færdig. Vælg en ny?</strong></p>`
+}
