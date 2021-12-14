@@ -1,10 +1,7 @@
 
 const map = createMap()
-const routeCache = makeTourCache()
+const routeCache = makeRouteCache()
 setUpHandlers()
-
-//TODO: Remove temporary stuff
-setUpLocationChooser()
 
 
 function createMap() {
@@ -89,8 +86,7 @@ function closeTourChooser(){
 }
 
 async function getNextTourPost(ev){
-    sessionStorage.setItem("locationId", routeCache.getPostId())
-    window.location.href = "http://localhost:8080/post"
+    routeCache.userArrived()
 }
 
 async function getTour(id){
@@ -172,7 +168,7 @@ function showRoute(data){
     }
 }
 
-function makeTourCache(){
+function makeRouteCache(){
     let routeList = []
     let currentStep
     return {
@@ -205,8 +201,11 @@ function makeTourCache(){
             //TODO: Do something if last step
         },
 
-        getPostId: () => {
-            return routeList[currentStep].postId
+        userArrived: () => {
+            sessionStorage.setItem("locationId", routeList[currentStep].postId)
+            window.open("http://localhost:8080/post", "_blank")
+            currentStep++
+            routeCache.getNextStep()
         }
     }
 }
@@ -234,13 +233,3 @@ function showInstructions(data){
     )} min </strong></p><ol>${tripInstructions}</ol>`;
 }
 
-//TODO: Delete this shit
-function setUpLocationChooser(){
-    let btn = document.getElementById("locationChooserBtn")
-
-    btn.onclick = () => {
-        let input = document.getElementById("locationId").value
-        sessionStorage.setItem("locationId", input)
-        window.location.href = "http://localhost:8080/post"
-    }
-}
