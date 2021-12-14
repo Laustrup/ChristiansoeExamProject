@@ -2,9 +2,20 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="UTF-8">
-    <title>title</title>
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="../../static/styles/global.css" th:href="@{/styles/global.css}">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
+
+    <!-- Text font as Varela Round-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+
+    <!-- Head style -->
+    <title th:text="${head_title}"></title>
+
+    <!-- Mapbox JS -->
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
   </head>
 </html>

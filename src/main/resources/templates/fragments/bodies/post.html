@@ -17,14 +17,10 @@
             </ul>
         </section>
 
-        <section class="postImageFlex">
-            <ul id="Images" th:each="image : ${images}">
-                <li><img th:src="@{image.getFilePath()}" alt="Couldn't show image..."></li>
-            </ul>
-        </section>
+        <section className="postImageFlex" id="Images"></section>
 
-        <section class="postAnimalFlex">
-            <ul id="Animals" th:each="animal : ${animals}">
+        <section class="postAnimalFlex" id="Animals">
+            <ul th:each="animal : ${animals}">
                 <li>
                     <section class="animalPost">
                         <section class="postTitleReportFlex">
