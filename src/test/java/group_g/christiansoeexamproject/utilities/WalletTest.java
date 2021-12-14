@@ -115,7 +115,8 @@ class WalletTest {
         assertEquals(expected.getLatitude(), actual.getLatitude());
 
         for (int i = 0; i < expected.getAnimals().size(); i++) {
-            assertEquals(expected.getAnimals().get(i).getTitle(), actual.getAnimals().get(i).getTitle());
+            Animal animal = (Animal) wallet.getObject(expected.getAnimals().get(i).getTitle());
+            assertEquals(expected.getAnimals().get(i).getTitle(), animal.getTitle());
         }
         for (int i = 0; i < expected.getSounds().size(); i++) {
             assertEquals(expected.getSounds().get(i).getFilePath(), actual.getSounds().get(i).getFilePath());
