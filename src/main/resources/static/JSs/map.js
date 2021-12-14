@@ -1,10 +1,7 @@
 
 const map = createMap()
-const routeCache = makeTourCache()
+const routeCache = makeRouteCache()
 setUpHandlers()
-
-//TODO: Remove temporary stuff
-setUpLocationChooser()
 
 
 function createMap() {
@@ -30,6 +27,7 @@ function setUpHandlers() {
     document.getElementById("tourChooserTable").onclick = selectTour
     document.getElementById("selectTourBtn").onclick = chooseTour
     document.getElementById("closeTourChooser").onclick = closeTourChooser
+    document.getElementById("arrivedBtn").onclick = getNextTourPost
 }
 
 async function showTourChooser(){
@@ -85,6 +83,10 @@ function chooseTour(){
 
 function closeTourChooser(){
     document.getElementById("tourChooser").style.display = "none"
+}
+
+async function getNextTourPost(ev){
+    routeCache.userArrived()
 }
 
 async function getTour(id){
@@ -166,11 +168,11 @@ function showRoute(data){
     }
 }
 
-function makeTourCache(){
+function makeRouteCache(){
     let routeList = []
     let currentStep
     return {
-        saveTour: async function(tour){
+        saveTour: async (tour) => {
             currentStep = 0
 
             const initialStart = [15.186091, 55.320772]
@@ -188,49 +190,56 @@ function makeTourCache(){
                 routeList[i] = await makeRouteObject(startLocationCoordinates, endLocationCoordinates, id)
             }
         },
-        getNextStep: function(){
+
+        getNextStep: () => {
+
+            if(currentStep >= routeList.length){
+                routeList = []
+                showEndText()
+                return
+            }
 
             const data = routeList[currentStep].data
 
             showRoute(data)
             showInstructions(data)
-            currentStep++
+        },
 
-            //TODO: Do something if last step
+        userArrived: () => {
+            sessionStorage.setItem("locationId", routeList[currentStep].postId)
+            window.open("http://localhost:8080/post", "_blank")
+            currentStep++
+            routeCache.getNextStep()
         }
     }
 }
 
-async function makeRouteObject(start, end, id){
+async function makeRouteObject(start, end, postId){
     const data = await getRouteData(start, end)
     return{
         start: start,
         end: end,
         data: data,
-        id: id
+        postId: postId
     }
 }
 
 function showInstructions(data){
-    const instructions = document.getElementById('instructions');
-    const steps = data.legs[0].steps;
+    const instructions = document.getElementById("instructions")
+    const steps = data.legs[0].steps
 
-    let tripInstructions = '';
+    let tripInstructions = ""
     for (const step of steps) {
-        tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+        tripInstructions += `<li>${step.maneuver.instruction}</li>`
     }
-    instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
-        data.duration / 60
-    )} min </strong></p><ol>${tripInstructions}</ol>`;
+
+    let tourDuration = Math.floor(data.duration / 60)
+    instructions.innerHTML =
+        `<p><strong>Trip duration: ${tourDuration} min </strong></p>
+        <ol>${tripInstructions}</ol>`
 }
 
-//TODO: Delete this shit
-function setUpLocationChooser(){
-    let btn = document.getElementById("locationChooserBtn")
-
-    btn.onclick = () => {
-        let input = document.getElementById("locationId").value
-        sessionStorage.setItem("locationId", input)
-        window.location.href = "http://localhost:8080/post"
-    }
+function showEndText(){
+    const instructions = document.getElementById('instructions')
+    instructions.innerHTML = `<p><strong>Turen er færdig. Vælg en ny?</strong></p>`
 }

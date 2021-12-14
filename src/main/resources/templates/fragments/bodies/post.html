@@ -7,17 +7,11 @@
             <p id="Report"></p>
         </section>
 
-        <section class="postSoundFlex" id="Sounds">
-            <ul th:each="sound : ${sounds}">
-                <li>
-                    <audio controls>
-                        <source th:src="@{sound.getFilePath()}" type="audio/wav">
-                    </audio>
-                </li>
-            </ul>
-        </section>
 
-        <section className="postImageFlex" id="Images"></section>
+        <section class="postSoundFlex" id="Sounds"></section>
+
+        <section class="postImageFlex" id="Images"></section>
+
 
         <section class="postAnimalFlex" id="Animals">
             <ul th:each="animal : ${animals}">
