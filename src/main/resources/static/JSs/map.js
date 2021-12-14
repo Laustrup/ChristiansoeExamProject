@@ -30,6 +30,7 @@ function setUpHandlers() {
     document.getElementById("tourChooserTable").onclick = selectTour
     document.getElementById("selectTourBtn").onclick = chooseTour
     document.getElementById("closeTourChooser").onclick = closeTourChooser
+    document.getElementById("arrivedBtn").onclick = getNextTourPost
 }
 
 async function showTourChooser(){
@@ -85,6 +86,11 @@ function chooseTour(){
 
 function closeTourChooser(){
     document.getElementById("tourChooser").style.display = "none"
+}
+
+async function getNextTourPost(ev){
+    sessionStorage.setItem("locationId", routeCache.getPostId())
+    window.location.href = "http://localhost:8080/post"
 }
 
 async function getTour(id){
@@ -170,7 +176,7 @@ function makeTourCache(){
     let routeList = []
     let currentStep
     return {
-        saveTour: async function(tour){
+        saveTour: async (tour) => {
             currentStep = 0
 
             const initialStart = [15.186091, 55.320772]
@@ -188,26 +194,30 @@ function makeTourCache(){
                 routeList[i] = await makeRouteObject(startLocationCoordinates, endLocationCoordinates, id)
             }
         },
-        getNextStep: function(){
+
+        getNextStep: () => {
 
             const data = routeList[currentStep].data
 
             showRoute(data)
             showInstructions(data)
-            currentStep++
 
             //TODO: Do something if last step
+        },
+
+        getPostId: () => {
+            return routeList[currentStep].postId
         }
     }
 }
 
-async function makeRouteObject(start, end, id){
+async function makeRouteObject(start, end, postId){
     const data = await getRouteData(start, end)
     return{
         start: start,
         end: end,
         data: data,
-        id: id
+        postId: postId
     }
 }
 
