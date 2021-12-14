@@ -1,10 +1,7 @@
 
 const map = createMap()
-const routeCache = makeTourCache()
+const routeCache = makeRouteCache()
 setUpHandlers()
-
-//TODO: Remove temporary stuff
-setUpLocationChooser()
 
 
 function createMap() {
@@ -89,8 +86,7 @@ function closeTourChooser(){
 }
 
 async function getNextTourPost(ev){
-    sessionStorage.setItem("locationId", routeCache.getPostId())
-    window.location.href = "http://localhost:8080/post"
+    routeCache.userArrived()
 }
 
 async function getTour(id){
@@ -172,7 +168,7 @@ function showRoute(data){
     }
 }
 
-function makeTourCache(){
+function makeRouteCache(){
     let routeList = []
     let currentStep
     return {
@@ -197,16 +193,23 @@ function makeTourCache(){
 
         getNextStep: () => {
 
+            if(currentStep >= routeList.length){
+                routeList = []
+                showEndText()
+                return
+            }
+
             const data = routeList[currentStep].data
 
             showRoute(data)
             showInstructions(data)
-
-            //TODO: Do something if last step
         },
 
-        getPostId: () => {
-            return routeList[currentStep].postId
+        userArrived: () => {
+            sessionStorage.setItem("locationId", routeList[currentStep].postId)
+            window.open("http://localhost:8080/post", "_blank")
+            currentStep++
+            routeCache.getNextStep()
         }
     }
 }
@@ -222,25 +225,21 @@ async function makeRouteObject(start, end, postId){
 }
 
 function showInstructions(data){
-    const instructions = document.getElementById('instructions');
-    const steps = data.legs[0].steps;
+    const instructions = document.getElementById("instructions")
+    const steps = data.legs[0].steps
 
-    let tripInstructions = '';
+    let tripInstructions = ""
     for (const step of steps) {
-        tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+        tripInstructions += `<li>${step.maneuver.instruction}</li>`
     }
-    instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
-        data.duration / 60
-    )} min </strong></p><ol>${tripInstructions}</ol>`;
+
+    let tourDuration = Math.floor(data.duration / 60)
+    instructions.innerHTML =
+        `<p><strong>Trip duration: ${tourDuration} min </strong></p>
+        <ol>${tripInstructions}</ol>`
 }
 
-//TODO: Delete this shit
-function setUpLocationChooser(){
-    let btn = document.getElementById("locationChooserBtn")
-
-    btn.onclick = () => {
-        let input = document.getElementById("locationId").value
-        sessionStorage.setItem("locationId", input)
-        window.location.href = "http://localhost:8080/post"
-    }
+function showEndText(){
+    const instructions = document.getElementById('instructions')
+    instructions.innerHTML = `<p><strong>Turen er færdig. Vælg en ny?</strong></p>`
 }
