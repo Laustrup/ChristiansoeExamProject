@@ -1,9 +1,11 @@
 
 const map = createMap()
+const routeCache = makeTourCache()
 setUpHandlers()
 
 //TODO: Remove temporary stuff
 setUpLocationChooser()
+
 
 function createMap() {
     mapboxgl.accessToken = 'pk.eyJ1IjoiZ2Vvd2FsbCIsImEiOiJja3dvc28yeHkwNjBjMm9sMHB1NGlkdTJsIn0.-zQAF2T_9EOKLHEGnbUV4w';
@@ -11,7 +13,8 @@ function createMap() {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11',
         center: [15.1877, 55.3203],
-        zoom: 15
+        zoom: 15,
+        locale: 'Danish'
     })
 
     const bounds = [
@@ -20,51 +23,6 @@ function createMap() {
     ];
     map.setMaxBounds(bounds);
     return map
-}
-
-async function getRoute(start, end){
-    const response = await fetch(`https://api.mapbox.com/directions/v5/mapbox/walking/
-                ${start[0]},${start[1]};${end[0]},${end[1]}
-                ?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`
-    )
-    const json = await response.json()
-    const data = json.routes[0]
-    const route = data.geometry.coordinates
-    const geojson = {
-        type: 'Feature',
-        properties: {},
-        geometry: {
-            type: 'LineString',
-            coordinates: route
-        }
-    }
-    return geojson
-}
-
-async function showRoute(geojson){
-    if (map.getSource('route')) {
-        map.getSource('route').setData(geojson);
-    }
-
-    else {
-        map.addLayer({
-            id: 'route',
-            type: 'line',
-            source: {
-                type: 'geojson',
-                data: geojson
-            },
-            layout: {
-                'line-join': 'round',
-                'line-cap': 'round'
-            },
-            paint: {
-                'line-color': '#3887be',
-                'line-width': 5,
-                'line-opacity': 0.75
-            }
-        });
-    }
 }
 
 function setUpHandlers() {
@@ -136,6 +94,9 @@ async function getTour(id){
     const response = await fetch("http://localhost:8080/tour?id=" + id)
     const data = await response.json()
 
+    await routeCache.saveTour(data)
+    routeCache.getNextStep()
+
     document.getElementById("loadingPrompt").style.display = "none"
 }
 
@@ -152,12 +113,115 @@ function generateTourListHTML(tours){
         let rowId = "tour_" + i
         finalHTML +=
             `<tr id=${rowId}  data-selected="no" data-id=${tours[i].id}>
-                        <td>${tours[i].title}</td>
-                        <td>${tours[i].description}</td>
-                    </tr>
-                    `
+                <td>${tours[i].title}</td>
+                <td>${tours[i].description}</td>
+            </tr>
+            `
     }
     return finalHTML
+}
+
+async function getRouteData(start, end){
+    const response = await fetch(`https://api.mapbox.com/directions/v5/mapbox/walking/
+                ${start[0]},${start[1]};${end[0]},${end[1]}
+                ?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`
+    )
+    const json = await response.json()
+    return json.routes[0]
+}
+
+function showRoute(data){
+    const route = data.geometry.coordinates
+
+    const geojson = {
+        type: 'Feature',
+        properties: {},
+        geometry: {
+            type: 'LineString',
+            coordinates: route
+        }
+    }
+    if (map.getSource('route')) {
+        map.getSource('route').setData(geojson);
+    }
+
+    else {
+        map.addLayer({
+            id: 'route',
+            type: 'line',
+            source: {
+                type: 'geojson',
+                data: geojson
+            },
+            layout: {
+                'line-join': 'round',
+                'line-cap': 'round'
+            },
+            paint: {
+                'line-color': '#3887be',
+                'line-width': 5,
+                'line-opacity': 0.75
+            }
+        });
+    }
+}
+
+function makeTourCache(){
+    let routeList = []
+    let currentStep
+    return {
+        saveTour: async function(tour){
+            currentStep = 0
+
+            const initialStart = [15.186091, 55.320772]
+            const initialEnd = [tour.locations[0].longitude, tour.locations[0].latitude]
+            const initialId = tour.locations[0].id
+            routeList[0] = await makeRouteObject(initialStart, initialEnd, initialId)
+
+            for(let i = 1; i < tour.locations.length; i++){
+                const startLocation = tour.locations[i-1]
+                const startLocationCoordinates = [startLocation.longitude, startLocation.latitude]
+                const endLocation = tour.locations[i]
+                const endLocationCoordinates = [endLocation.longitude, endLocation.latitude]
+                const id = tour.locations[i].id
+
+                routeList[i] = await makeRouteObject(startLocationCoordinates, endLocationCoordinates, id)
+            }
+        },
+        getNextStep: function(){
+
+            const data = routeList[currentStep].data
+
+            showRoute(data)
+            showInstructions(data)
+            currentStep++
+
+            //TODO: Do something if last step
+        }
+    }
+}
+
+async function makeRouteObject(start, end, id){
+    const data = await getRouteData(start, end)
+    return{
+        start: start,
+        end: end,
+        data: data,
+        id: id
+    }
+}
+
+function showInstructions(data){
+    const instructions = document.getElementById('instructions');
+    const steps = data.legs[0].steps;
+
+    let tripInstructions = '';
+    for (const step of steps) {
+        tripInstructions += `<li>${step.maneuver.instruction}</li>`;
+    }
+    instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
+        data.duration / 60
+    )} min </strong></p><ol>${tripInstructions}</ol>`;
 }
 
 //TODO: Delete this shit

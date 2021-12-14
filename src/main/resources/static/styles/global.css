@@ -10,6 +10,7 @@ body{
     height: 600px;
     width: 540px;
     z-index: 1;
+    margin: 10px;
 }
 
 .flex-container{
@@ -90,4 +91,22 @@ table, th, td {
     display: flex;
     flex-direction: row;
     justify-content: center;
+}
+
+#instructions {
+    margin: 10px;
+    top: 0;
+    bottom: 20%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.instructionFlex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.arrivedBtn{
+    width: fit-content;
 }
