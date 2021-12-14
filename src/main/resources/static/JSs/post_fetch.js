@@ -16,6 +16,7 @@ function getPost() {
                     </ul>
                 </section>`;
 
+
             document.getElementById("Sounds").innerHTML = `
             <section class="postSoundFlex">
                 <ul th:each="sound : ${data.sounds}">
