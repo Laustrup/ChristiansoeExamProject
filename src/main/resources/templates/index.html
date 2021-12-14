@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <head th:replace="/fragments/head.html(head_title='Velkommen til Christiansø')"></head>
+    <head th:if="Body eq 'Map'" th:replace="/fragments/head.html(head_title='Christiansø')"></head>
+    <head th:if="Body eq 'Location'" th:replace="/fragments/head.html(head_title='Christiansø - Location')"></head>
 
     <body>
+        <main>
+            <section th:if="${Body eq 'Map'}">
+                <header th:replace="/fragments/header.html(title='Velkommen til Christiansø!')"></header>
+                <main th:replace="/fragments/bodies/map.html"></main>
+            </section>
 
-        <div th:if="${Body eq 'Map'}">
-            <div th:replace="/fragments/bodies/map.html"></div>
-        </div>
-
-        <div th:if="${Body eq 'Location'}">
-            <div th:replace="/fragments/bodies/post.html"></div>
-        </div>
-
+            <section th:if="${Body eq 'Location'}">
+                <header th:replace="/fragments/header.html(title='Velkommen til Christiansø!')"></header>
+                <main th:replace="/fragments/bodies/post.html"></main>
+            </section>
+        </main>
     </body>
 </html>

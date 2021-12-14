@@ -22,24 +22,21 @@ class WalletTest {
     private Wallet wallet;
 
     @Autowired
-    TourRepository tourRepo;
+    private TourRepository tourRepo;
     @Autowired
-    LocationRepository locationRepo;
+    private LocationRepository locationRepo;
     @Autowired
-    AnimalRepository animalRepo;
+    private AnimalRepository animalRepo;
     @Autowired
-    ImageRepository imageRepo;
+    private ImageRepository imageRepo;
     @Autowired
-    SoundRepository soundRepo;
+    private SoundRepository soundRepo;
 
     @BeforeEach
     public void beforeEach() {
         wallet = Wallet.getWallet();
         wallet.injectRepos(tourRepo,locationRepo,animalRepo,imageRepo,soundRepo);
     }
-
-
-//TODO: Denne test skaber problemer, ift. "failed to lazily initialize a collection of role...". Skal fikses.
 
     @ParameterizedTest
     @CsvSource(value = "Fra vest til øst|Denne tur er fra vest til øst!|Danmarks østligeste punkt_Badebro",delimiter = '|')
@@ -61,7 +58,6 @@ class WalletTest {
         assertEquals(expected.getReport(), actual.getReport());
 
         for (int i = 0; i < expected.getLocations().size(); i++) {
-            //TODO: den laver Failed to lazily initialize.. for "locations" og derfor kan actual ikke få en titel.
              assertEquals(expected.getLocations().get(i).getTitle(),actual.getLocations().get(i).getTitle());
         }
     }

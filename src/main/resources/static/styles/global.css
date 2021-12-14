@@ -4,6 +4,7 @@ ul{
 
 body{
     font-family: 'Varela Round', sans-serif;
+    background-image: url("../images/backgrounds/frontpage.jpeg");
 }
 
 .map {
