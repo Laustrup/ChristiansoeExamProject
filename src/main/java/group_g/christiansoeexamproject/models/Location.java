@@ -1,6 +1,6 @@
 package group_g.christiansoeexamproject.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.List;
@@ -30,9 +30,9 @@ public abstract class Location {
     @JsonBackReference
     private List<Sound> sounds;
 
-    @ManyToMany(mappedBy = "locations", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties("locations")
-    private List<Tour> tours;
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<TourLocation> tourLocations;
 
 
     public Location(String title, String report, double longitude, double latitude, List<Image> images, List<Sound> sounds){
@@ -100,11 +100,11 @@ public abstract class Location {
         this.sounds = sounds;
     }
 
-    public List<Tour> getTours(){
-        return tours;
+    public List<TourLocation> getTourLocations(){
+        return tourLocations;
     }
 
-    public void setTours(List<Tour> tours){
-        this.tours = tours;
+    public void setTours(List<TourLocation> tourLocations){
+        this.tourLocations = tourLocations;
     }
 }

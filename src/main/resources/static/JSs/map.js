@@ -85,7 +85,7 @@ function closeTourChooser(){
     document.getElementById("tourChooser").style.display = "none"
 }
 
-async function getNextTourPost(ev){
+async function getNextTourPost(){
     routeCache.userArrived()
 }
 
@@ -93,7 +93,7 @@ async function getTour(id){
     document.getElementById("tourChooser").style.display = "none"
     document.getElementById("loadingPrompt").style.display = "flex"
 
-    const response = await fetch("http://localhost:8080/tour?id=" + id)
+    const response = await fetch("http://localhost:8080/tour/" + id)
     const data = await response.json()
 
     await routeCache.saveTour(data)
@@ -175,17 +175,21 @@ function makeRouteCache(){
         saveTour: async (tour) => {
             currentStep = 0
 
+            const locationsResponse = await fetch("http://localhost:8080/tourLocations/" + tour.id)
+            const locations = await locationsResponse.json()
+
+            const initialId = locations[0].id
             const initialStart = [15.186091, 55.320772]
-            const initialEnd = [tour.locations[0].longitude, tour.locations[0].latitude]
-            const initialId = tour.locations[0].id
+            const initialEnd = [locations[0].longitude, locations[0].latitude]
+
             routeList[0] = await makeRouteObject(initialStart, initialEnd, initialId)
 
-            for(let i = 1; i < tour.locations.length; i++){
-                const startLocation = tour.locations[i-1]
+            for(let i = 1; i < locations.length; i++){
+                const startLocation = locations[i-1]
                 const startLocationCoordinates = [startLocation.longitude, startLocation.latitude]
-                const endLocation = tour.locations[i]
+                const endLocation = locations[i]
                 const endLocationCoordinates = [endLocation.longitude, endLocation.latitude]
-                const id = tour.locations[i].id
+                const id = locations[i].id
 
                 routeList[i] = await makeRouteObject(startLocationCoordinates, endLocationCoordinates, id)
             }

@@ -25,15 +25,17 @@ public class Wallet {
     private AnimalRepository animalRepo;
     private ImageRepository imageRepo;
     private SoundRepository soundRepo;
+    private TourLocationRepository tourLocationRepo;
 
     public static void injectRepos(TourRepository tourRepo,LocationRepository locationRepo,AnimalRepository animalRepo,
-                       ImageRepository imageRepo, SoundRepository soundRepo) {
+                       ImageRepository imageRepo, SoundRepository soundRepo, TourLocationRepository tourLocationRepo) {
 
         wallet.tourRepo = tourRepo;
         wallet.locationRepo = locationRepo;
         wallet.animalRepo = animalRepo;
         wallet.imageRepo = imageRepo;
         wallet.soundRepo = soundRepo;
+        wallet.tourLocationRepo = tourLocationRepo;
         wallet.update();
     }
 
@@ -47,6 +49,7 @@ public class Wallet {
         List<Animal> animals = animalRepo.findAll();
         List<Image> images = imageRepo.findAll();
         List<Sound> sounds = soundRepo.findAll();
+        List<TourLocation> tourLocations = tourLocationRepo.findAll();
 
         // Puts the lists in the inbox as lists for iterable purposes
         inventory.put("Tours",tours);
@@ -73,7 +76,11 @@ public class Wallet {
             inventory.put("Sound id: "+sounds.get(i).getId(),sounds.get(i));
             inventory.put(sounds.get(i).getTitle(),sounds.get(i));
         }
-
+        for (int i = 0; i < tourLocations.size();i++) {
+            TourLocation tourLocation = tourLocations.get(i);
+            String idString = "TourLocation title:"+tourLocation.getTour().getTitle();
+            inventory.put(idString,tourLocations.get(i));
+        }
         return inventory;
     }
 
@@ -83,9 +90,19 @@ public class Wallet {
     public Tour getTour(int id) {
         return (Tour) inventory.get("Tour id: "+id);
     }
-    public Location getLocation(int id) {
+    public Location getLocation(int id) {return (Location) inventory.get("Location id: " + id);}
+    public List<Location> getTourLocations(int tourId) {
+        Tour tour = (Tour) inventory.get("Tour id: " + tourId);
 
-        return (Location) inventory.get("Location id: " + id);
+        List<TourLocation> tourLocations = tour.getTourLocations();
+        tourLocations.sort(new TourLocationComparator());
+
+        ArrayList<Location> locationList = new ArrayList<>();
+        for(TourLocation tourLocation : tourLocations) {
+            locationList.add((Location) inventory.get("Location id: " + tourLocation.getLocation().getId()));
+
+        }
+        return locationList;
     }
 
     // Returns true if key exists and replaces the key's value with method's value parameter
