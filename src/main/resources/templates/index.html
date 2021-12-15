@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <head th:if="Body eq 'Map'" th:replace="/fragments/head.html(head_title='Christiansø')"></head>
-    <head th:if="Body eq 'Location'" th:replace="/fragments/head.html(head_title='Christiansø - Location')"></head>
+    <head th:if="${Body eq 'Map'}" th:replace="/fragments/head.html(head_title='Christiansø')"></head>
+    <head th:if="${Body eq 'Location'}" th:replace="/fragments/head.html(head_title='Christiansø - Location')"></head>
 
     <body>
-        <main>
-            <section th:if="${Body eq 'Map'}">
-                <header th:replace="/fragments/header.html(title='Velkommen til Christiansø!')"></header>
-                <main th:replace="/fragments/bodies/map.html"></main>
-            </section>
+        <section th:if="${Body eq 'Map'}">
+            <header th:replace="/fragments/header.html(title='Velkommen til Christiansø!')"></header>
+            <main th:replace="/fragments/bodies/map.html"></main>
+        </section>
 
-            <section th:if="${Body eq 'Location'}">
-                <header th:replace="/fragments/header.html(title='Velkommen til Christiansø!')"></header>
-                <main th:replace="/fragments/bodies/post.html"></main>
-            </section>
-        </main>
+        <section th:if="${Body eq 'Location'}">
+            <header th:replace="/fragments/header.html(title='Velkommen til Christiansø!')"></header>
+            <main th:replace="/fragments/bodies/post.html"></main>
+        </section>
     </body>
 </html>
