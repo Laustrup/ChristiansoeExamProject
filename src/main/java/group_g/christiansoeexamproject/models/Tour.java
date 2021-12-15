@@ -1,5 +1,7 @@
 package group_g.christiansoeexamproject.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -16,15 +18,15 @@ public class Tour {
     @Column
     private String report;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name="tour_location")
-    private List<Location> locations;
+    @OneToMany(mappedBy = "tour", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<TourLocation> tourLocations;
 
 
-    public Tour (String title, String report, List<Location> locations){
+    public Tour (String title, String report, List<TourLocation> tourLocations){
         this.title = title;
         this.report = report;
-        this.locations = locations;
+        this.tourLocations = tourLocations;
     }
 
     public Tour(){
@@ -51,11 +53,11 @@ public class Tour {
         this.report = report;
     }
 
-    public List<Location> getLocations() {
-        return locations;
+    public List<TourLocation> getTourLocations() {
+        return tourLocations;
     }
 
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
+    public void setTourLocations(List<TourLocation> tourLocations) {
+        this.tourLocations = tourLocations;
     }
 }
