@@ -1,10 +1,11 @@
 header{
+
     border-radius: 15px;
     border: 2px solid blue;
 
     background-image: linear-gradient(to bottom right, purple, cyan);
 
-    margin: 50px 400px 20px;
+    margin: 30px 400px 20px;
     padding: 10px;
 
     font-size: 20px;
@@ -18,6 +19,8 @@ header{
 }
 
 body{
+    height: 30px;
+
     /* Text */
     font-family: 'Varela Round', sans-serif;
 
@@ -38,7 +41,7 @@ body{
 
 main{
 
-    margin: 50px 400px 20px;
+    margin: 40px 400px 20px;
     margin-bottom: 500px;
     width: 800px;
 
@@ -53,8 +56,8 @@ main{
     border-radius: 15px;
     box-shadow: 5px 5px gray
 
-
 }
+
 
 .flex-container{
     display: flex;
