@@ -1,50 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-    <section class="postOuterFlex">
-        <section class="postTitleReportFlex">
-            <h1 id="Title"></h1>
-            <p id="Report"></p>
-        </section>
+    <main>
+        <section class="postOuterFlex">
+            <section class="postTitleReportFlex">
+                <h1 id="Title"></h1>
+                <p id="Report"></p>
+            </section>
 
 
-        <section class="postSoundFlex" id="Sounds"></section>
+            <section class="postSoundFlex" id="Sounds"></section>
 
-        <section class="postImageFlex" id="Images"></section>
+            <section class="postImageFlex" id="Images"></section>
 
 
-        <section class="postAnimalFlex" id="Animals">
-            <ul th:each="animal : ${animals}">
-                <li>
-                    <section class="animalPost">
-                        <section class="postTitleReportFlex">
-                            <h1 th:text="${animal.getTitle()}"></h1>
-                            <p th:text="${animal.getReport()}"></p>
+            <section class="postAnimalFlex" id="Animals">
+                <ul th:each="animal : ${animals}">
+                    <li>
+                        <section class="animalPost">
+                            <section class="postTitleReportFlex">
+                                <h1 th:text="${animal.getTitle()}"></h1>
+                                <p th:text="${animal.getReport()}"></p>
+                            </section>
+
+                            <div>
+                                <ul th:each="image : ${animal.getImages()}">
+                                    <li>
+                                        <img th:src="@{image.getFilePath()}">
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div>
+                                <ul th:each="sound : ${animal.getSounds}">
+                                    <li>
+                                        <audio controls>
+                                            <source th:src="@{sound.getFilePath()}" type="audio/wav">
+                                        </audio>
+                                    </li>
+                                </ul>
+                            </div>
                         </section>
+                    </li>
+                </ul>
+            </section>
 
-                        <div>
-                            <ul th:each="image : ${animal.getImages()}">
-                                <li>
-                                    <img th:src="@{image.getFilePath()}">
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <ul th:each="sound : ${animal.getSounds}">
-                                <li>
-                                    <audio controls>
-                                        <source th:src="@{sound.getFilePath()}" type="audio/wav">
-                                    </audio>
-                                </li>
-                            </ul>
-                        </div>
-                    </section>
-                </li>
-            </ul>
         </section>
-
-    </section>
+    </main>
 
     <script th:src="@{JSs/post_fetch.js}"></script>
 

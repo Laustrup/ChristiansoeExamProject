@@ -1,42 +1,43 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
+    <main>
+        <div id="tourChooser" class="tourChooser">
+            <div class="tourList">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Navn</th>
+                            <th>Beskrivelse</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tourChooserTable">
+                    </tbody>
+                </table>
 
-    <div id="tourChooser" class="tourChooser">
-        <div class="tourList">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Navn</th>
-                        <th>Beskrivelse</th>
-                    </tr>
-                </thead>
-                <tbody id="tourChooserTable">
-                </tbody>
-            </table>
-
-            <div class="modalBtnFlex">
-                <button id="selectTourBtn" class="modalBtn">Vælg tur</button>
-                <button id="closeTourChooser" class="modalBtn">Luk</button>
+                <div class="modalBtnFlex">
+                    <button id="selectTourBtn" class="modalBtn">Vælg tur</button>
+                    <button id="closeTourChooser" class="modalBtn">Luk</button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="loadingPrompt" class="tourChooser">
-        <h1>Indlæser tur</h1>
-    </div>
-
-    <div class="flex-container">
-        <div class="instructionFlex">
-            <div id="instructions"></div>
-            <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
+        <div id="loadingPrompt" class="tourChooser">
+            <h1>Indlæser tur</h1>
         </div>
-        <div id="map" class="map"></div>
 
-        <div class="flex-sidebar">
-            <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+        <div class="flex-container">
+            <div class="instructionFlex">
+                <div id="instructions"></div>
+                <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
+            </div>
+            <div id="map" class="map"></div>
+
+            <div class="flex-sidebar">
+                <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+            </div>
         </div>
-    </div>
+    </main>
 
     <script th:src="@{/JSs/map.js}"></script>
 
