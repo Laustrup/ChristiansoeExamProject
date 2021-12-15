@@ -1,3 +1,5 @@
+<!-- Map fragment -->
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
@@ -26,7 +28,7 @@
             <h1>Indlæser tur</h1>
         </div>
 
-        <div class="flex-container">
+        <section class="flex-container">
             <div class="instructionFlex">
                 <div id="instructions"></div>
                 <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
@@ -36,7 +38,7 @@
             <div class="flex-sidebar">
                 <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
             </div>
-        </div>
+        </section>
     </main>
 
     <script th:src="@{/JSs/map.js}"></script>
