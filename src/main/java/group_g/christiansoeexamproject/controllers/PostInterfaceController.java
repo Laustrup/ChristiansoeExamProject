@@ -13,8 +13,8 @@ public class PostInterfaceController {
 
     private final Wallet wallet = Wallet.getWallet();
 
-    @GetMapping("/location")
-    public ResponseEntity<Location> giveLocation(@RequestParam int id) {
+    @GetMapping("/location?={id}")
+    public ResponseEntity<Location> giveLocation(@PathVariable int id) {
         return new ResponseEntity<>(wallet.getLocation(id), HttpStatus.OK);
     }
 }
