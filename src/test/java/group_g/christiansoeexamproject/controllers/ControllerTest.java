@@ -47,7 +47,7 @@ class ControllerTest {
         ResponseEntity<Location> actual = postInterfaceController.giveLocation(id);
 
         // Assert
-        assertThat(actual.getStatusCodeValue()).isEqualTo(201);
-        assertThat(actual.getHeaders().getLocation().getPath()).isEqualTo("/1");
+        assertThat(actual.getStatusCodeValue()).isEqualTo(200);
+        assertThat(actual.getHeaders().getLocation().getPath()).isEqualTo("/location?="+id);
     }
 }
