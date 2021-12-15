@@ -2,7 +2,7 @@ getPost()
 function getPost() {
     let id = sessionStorage.getItem("locationId")
 
-    fetch("http://localhost:8080/location?id=" + id)
+    fetch("http://localhost:8080/location/" + id)
         .then((response) => {
             return response.json()
         })
