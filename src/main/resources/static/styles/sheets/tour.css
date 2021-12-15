@@ -1,0 +1,23 @@
+.tourChooser{
+    display: none;
+    position: absolute;
+    float: left;
+    z-index: 2;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 50px;
+    left: 50%;
+    top: 50px;
+    transform: translate(-50%);
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+}
+
+.tourList {
+    background-color: #fefefe;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #888;
+    justify-content: center;
+}

@@ -1,6 +1,7 @@
 package group_g.christiansoeexamproject.controllers;
 
 import group_g.christiansoeexamproject.models.Location;
+import group_g.christiansoeexamproject.models.Tour;
 import group_g.christiansoeexamproject.repositories.*;
 import group_g.christiansoeexamproject.utilities.Wallet;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,11 +31,13 @@ class ControllerTest {
     private ImageRepository imageRepo;
     @Autowired
     private SoundRepository soundRepo;
+    @Autowired
+    private TourLocationRepository tourLocationRepo;
 
     @BeforeEach
     public void beforeEach() {
         wallet = Wallet.getWallet();
-        wallet.injectRepos(tourRepo,locationRepo,animalRepo,imageRepo,soundRepo);
+        wallet.injectRepos(tourRepo,locationRepo,animalRepo,imageRepo,soundRepo,tourLocationRepo);
     }
 /*
     @ParameterizedTest

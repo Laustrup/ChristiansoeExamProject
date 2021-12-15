@@ -18,9 +18,8 @@ INSERT INTO animal_locations(animals_id,locations_id) VALUES (1,1);
 INSERT INTO animal_locations(animals_id,locations_id) VALUES (1,2);
 
 INSERT INTO tour(title,report) VALUES ("Fra vest til øst","Denne tur er fra vest til øst!");
-
 INSERT INTO tour(title,report) VALUES ("Spøgelseturen","Du bliver hjemsøgt, hvis du tager på denne faaaarlige tur");
 INSERT INTO tour(title,report) VALUES ("Frøturen","Elsker du frølyde? Hedder du Janus? Dette er turen for dig");
 
-INSERT INTO tour_locations(tours_id,locations_id) VALUES (1,1);
-INSERT INTO tour_locations(tours_id,locations_id) VALUES (1,2);
+INSERT INTO tour_locations(tours_id,locations_id,step) VALUES (1,2,1);
+INSERT INTO tour_locations(tours_id,locations_id,step) VALUES (1,1,2);
