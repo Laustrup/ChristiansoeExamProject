@@ -1,5 +1,6 @@
 package group_g.christiansoeexamproject.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -25,7 +26,7 @@ public class Image {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="image_location")
-    @JsonManagedReference
+    @JsonBackReference
     private Location location;
 
 
