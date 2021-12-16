@@ -5,8 +5,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
     <main>
-        <div id="tourChooser" class="tourChooser">
-            <div class="tourList">
+        <section id="tourChooser" class="tourChooser">
+            <section class="tourList">
                 <table>
                     <thead>
                         <tr>
@@ -22,13 +22,8 @@
                     <button id="selectTourBtn" class="modalBtn">Vælg tur</button>
                     <button id="closeTourChooser" class="modalBtn">Luk</button>
                 </div>
-
-                <div class="instructionFlex">
-                    <div id="instructions"></div>
-                    <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
-                </div>
-            </div>
-        </div>
+            </section>
+        </section>
 
         <div id="loadingPrompt" class="tourChooser">
             <h1>Indlæser tur</h1>
@@ -39,6 +34,11 @@
 
             <div class="flex-sidebar">
                 <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+            </div>
+
+            <div class="instructionFlex">
+                <div id="instructions"></div>
+                <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
             </div>
         </section>
     </main>
