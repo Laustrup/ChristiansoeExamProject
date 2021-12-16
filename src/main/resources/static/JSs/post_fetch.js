@@ -8,24 +8,20 @@ async function getPost() {
     document.getElementById("Title").innerText = data.title
     document.getElementById("Report").innerText = data.report
 
-    let imageHtml = `<ul>`
+    let imageHtml = ``
 
     for(let i = 0; i < data.images.length; i++){
-        imageHtml += `<li><img src="../../../static/${data.images[i].filePath}" alt="Couldn't show image"></li>`
+        imageHtml += `<img src="../../../static/${data.images[i].filePath}" alt="Couldn't show image">`
     }
-    imageHtml += `</ul>`
 
 
-    let soundHtml = `<ul>`
+    let soundHtml = ``
     for(let i = 0; i < data.sounds.length; i++){
         soundHtml +=
-            `<li>
-                <audio controls>
-                    <source src="../../../static/${data.sounds[i].filePath}" type="audio/wav">
-                </audio>
-            </li>`
+            `<audio controls>
+                <source src="../../../static/${data.sounds[i].filePath}" type="audio.wav">
+            </audio>`
     }
-    soundHtml += `</ul>`
 
     document.getElementById("Images").innerHTML = imageHtml
     document.getElementById("Sounds").innerHTML = soundHtml
