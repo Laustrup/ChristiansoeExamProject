@@ -10,6 +10,7 @@ function getPost() {
             document.getElementById("Title").innerText = data.title
             document.getElementById("Report").innerText = data.report
 
+            /* This does not work no matter what. Need to do it through Java + Html
             document.getElementById("Images").innerHTML = `
                 <section class="postImageFlex">
                     <ul th:each="image : ${data.images}">
@@ -28,7 +29,7 @@ function getPost() {
                     </li>
                 </ul>
             </section>`;
-
+*/
 
 
             console.log(data)
