@@ -6,41 +6,47 @@
 
 
     <main>
-        <section id="tourChooser" class="tourChooser">
-            <section class="tourList">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Navn</th>
-                            <th>Beskrivelse</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tourChooserTable">
-                    </tbody>
-                </table>
+        <section id="map_section">
+            <section id="tourChooser" class="tourChooser">
+                <section class="tourList">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Navn</th>
+                                <th>Beskrivelse</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tourChooserTable">
+                        </tbody>
+                    </table>
 
-                <div class="modalBtnFlex">
-                    <button id="selectTourBtn" class="modalBtn">Vælg tur</button>
-                    <button id="closeTourChooser" class="modalBtn">Luk</button>
-                </div>
+                    <div class="modalBtnFlex">
+                        <button id="selectTourBtn" class="modalBtn">Vælg tur</button>
+                        <button id="closeTourChooser" class="modalBtn">Luk</button>
+                    </div>
+                </section>
             </section>
-        </section>
 
-        <div id="loadingPrompt" class="tourChooser">
-            <h1>Indlæser tur</h1>
-        </div>
+            <section class="interact_section">
+                <div class="button_section">
+                    <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+                    <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
+                </div>
 
-        <section class="flex-container">
-            <div id="map" class="map"></div>
+                <div class="info_section">
+                    blalblablabalbablababl
+                    <div id="instructions"></div>
+                </div>
 
-            <div class="flex-sidebar">
-                <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+            </section>
+
+            <div id="loadingPrompt" class="tourChooser">
+                <h1>Indlæser tur</h1>
             </div>
 
-            <div class="instructionFlex">
-                <div id="instructions"></div>
-                <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
-            </div>
+            <section class="flex-container">
+                <div id="map" class="map"></div>
+            </section>
         </section>
     </main>
 

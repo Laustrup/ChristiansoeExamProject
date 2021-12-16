@@ -1,25 +1,43 @@
-.locationChooserFlex {
+#map_section{
     display: flex;
     flex-direction: row;
+
 }
 
-#instructions {
-    margin: 10px;
-    top: 0;
-    bottom: 20%;
-    padding: 20px;
-    overflow-y: auto;
-}
-
-.instructionFlex{
+.interact_section{
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+    margin: 15px 20px 10px 50px;
+    padding:5px;
+    min-width:300px;
+    max-width:450px;
+
+    border: 1px solid blue;
+    border-radius: 15px;
 }
 
-.flex-container{
+.button_section{
     display: flex;
-    margin: 10px;
-    height: 100%;
-    width: 100%;
+    flex-direction: column;
+
+    margin: auto;
+    margin-top: 1px;
+    margin-bottom: 30px;
+
+    padding: 5px;
+}
+
+.info_section{
+    margin: auto;
+    margin-top: 1px;
+
+    padding:5px;
+
+    border: 1px solid blue;
+    border-radius: 15px;
+}
+
+#instructions{
+    max-width:400px;
 }

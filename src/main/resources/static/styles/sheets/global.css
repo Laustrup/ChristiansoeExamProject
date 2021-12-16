@@ -1,3 +1,8 @@
+*{
+    margin: 0 auto;
+    justify-content: center;
+}
+
 header{
 
     border-radius: 15px;
@@ -26,8 +31,6 @@ body{
 
     /* Background */
     background-image: url("/static/styles/style_images/background.png");
-    background-position: center;
-    background-repeat: no-repeat;
     background-size: cover;
 }
 
@@ -43,7 +46,7 @@ main{
 
     margin: 40px 400px 20px;
     margin-bottom: 500px;
-    width: 800px;
+    width: 1000px;
 
     display: flex;
     align-items: center;
