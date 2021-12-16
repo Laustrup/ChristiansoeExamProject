@@ -11,16 +11,24 @@ async function getPost() {
     let imageHtml = ``
 
     for(let i = 0; i < data.images.length; i++){
-        imageHtml += `<img src="../../../static/${data.images[i].filePath}" alt="Couldn't show image">`
+        imageHtml +=
+            `<div class="imageItem">
+                <h1>${data.images[i].title}</h1>
+                <img src="../../../static/${data.images[i].filePath}" alt="Couldn't show image">
+            </div>`
     }
 
 
     let soundHtml = ``
     for(let i = 0; i < data.sounds.length; i++){
         soundHtml +=
-            `<audio controls>
-                <source src="../../../static/${data.sounds[i].filePath}" type="audio/wav">
-            </audio>`
+
+            `<div class="soundItem">
+                <h1>${data.sounds[i].title}</h1>
+                <audio controls>
+                    <source src="../../../static/${data.sounds[i].filePath}" type="audio/wav">
+                </audio>
+            </div>`
     }
 
     document.getElementById("Images").innerHTML = imageHtml
