@@ -19,7 +19,7 @@ async function getPost() {
     for(let i = 0; i < data.sounds.length; i++){
         soundHtml +=
             `<audio controls>
-                <source src="../../../static/${data.sounds[i].filePath}" type="audio.wav">
+                <source src="../../../static/${data.sounds[i].filePath}" type="audio/wav">
             </audio>`
     }
 
