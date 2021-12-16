@@ -21,7 +21,7 @@ async function getPost() {
         soundHtml +=
             `<li>
                 <audio controls>
-                    <source src="../../../static/${data.sounds[i].filePath}" type="audio.wav">
+                    <source src="../../../static/${data.sounds[i].filePath}" type="audio/wav">
                 </audio>
             </li>`
     }
