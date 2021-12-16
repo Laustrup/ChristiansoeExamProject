@@ -39,7 +39,7 @@ class ControllerTest {
         wallet = Wallet.getWallet();
         wallet.injectRepos(tourRepo,locationRepo,animalRepo,imageRepo,soundRepo,tourLocationRepo);
     }
-/*
+
     @ParameterizedTest
     @CsvSource(value = {"1","2"},delimiter = '|')
     public void locationTest(int id) {
@@ -52,5 +52,5 @@ class ControllerTest {
         // Assert
         assertThat(actual.getStatusCodeValue()).isEqualTo(200);
         assertThat(actual.getHeaders().getLocation().getPath()).isEqualTo("/location/"+id);
-    }*/
+    }
 }
