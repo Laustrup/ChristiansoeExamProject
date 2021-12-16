@@ -1,3 +1,8 @@
+*{
+    /* Makes everything in center */
+    margin: 0 auto;
+}
+
 header{
 
     border-radius: 15px;
