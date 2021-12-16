@@ -23,11 +23,11 @@ public abstract class Location {
     private double latitude;
 
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference
     private List<Image> images;
 
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference
     private List<Sound> sounds;
 
     @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)

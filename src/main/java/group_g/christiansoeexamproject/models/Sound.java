@@ -1,5 +1,7 @@
 package group_g.christiansoeexamproject.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -23,6 +25,7 @@ public class Sound {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="sound_location")
+    @JsonBackReference
     private Location location;
 
 
