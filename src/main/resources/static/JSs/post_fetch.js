@@ -1,37 +1,34 @@
 getPost()
-function getPost() {
+async function getPost() {
     let id = sessionStorage.getItem("locationId")
 
-    fetch("http://localhost:8080/location/" + id)
-        .then((response) => {
-            return response.json()
-        })
-        .then((data) => {
-            document.getElementById("Title").innerText = data.title
-            document.getElementById("Report").innerText = data.report
+    const response = await fetch("http://localhost:8080/location/" + id)
+    const data = await response.json()
 
-            /* This does not work no matter what. Need to do it through Java + Html
-            document.getElementById("Images").innerHTML = `
-                <section class="postImageFlex">
-                    <ul th:each="image : ${data.images}">
-                        <li><img th:src="@{image.getFilePath()}" alt="Couldn't show image..."></li>
-                    </ul>
-                </section>`;
+    document.getElementById("Title").innerText = data.title
+    document.getElementById("Report").innerText = data.report
+
+    let imageHtml = `<ul>`
+
+    for(let i = 0; i < data.images.length; i++){
+        imageHtml += `<li><img src="../../../static/${data.images[i].filePath}" alt="Couldn't show image"></li>`
+    }
+    imageHtml += `</ul>`
 
 
-            document.getElementById("Sounds").innerHTML = `
-            <section class="postSoundFlex">
-                <ul th:each="sound : ${data.sounds}">
-                    <li>
-                        <audio controls>
-                            <source th:src="@{image.getFilePath()}" type="audio/wav" >
-                        </audio>
-                    </li>
-                </ul>
-            </section>`;
-*/
+    let soundHtml = `<ul>`
+    for(let i = 0; i < data.sounds.length; i++){
+        soundHtml +=
+            `<li>
+                <audio controls>
+                    <source src="../../../static/${data.sounds[i].filePath}" type="audio.wav">
+                </audio>
+            </li>`
+    }
+    soundHtml += `</ul>`
 
+    document.getElementById("Images").innerHTML = imageHtml
+    document.getElementById("Sounds").innerHTML = soundHtml
 
-            console.log(data)
-        })
+    console.log(data)
 }
