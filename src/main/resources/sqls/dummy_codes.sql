@@ -52,6 +52,10 @@ INSERT INTO sound(file_path, title, sound_animal, sound_location)
 VALUES ("/sounds/seal.wav", "Sæl hyl lyd", null,1);
 INSERT INTO sound(file_path, title, sound_animal, sound_location)
 VALUES ("/sounds/seal.wav", "Sæl hyl lyd", 1,null);
+INSERT INTO sound(file_path, title, sound_animal, sound_location)
+VALUES ("/sounds/junglebird.wav", "Fuglelyd", null,1);
+INSERT INTO sound(file_path, title, sound_animal, sound_location)
+VALUES ("/sounds/seal.wav", "Sæl hyl lyd", null,6);
 
 /*Animal Locations*/
 INSERT INTO animal_locations(animals_id,locations_id) VALUES (1,1);
