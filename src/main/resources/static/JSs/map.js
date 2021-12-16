@@ -174,7 +174,6 @@ function makeRouteCache(){
     return {
         saveTour: async (tour) => {
             currentStep = 0
-
             const locationsResponse = await fetch("http://localhost:8080/tourLocations/" + tour.id)
             const locations = await locationsResponse.json()
 
