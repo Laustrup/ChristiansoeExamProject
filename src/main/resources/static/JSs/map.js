@@ -240,6 +240,7 @@ function showInstructions(data){
     instructions.innerHTML =
         `<p><strong>Trip duration: ${tourDuration} min </strong></p>
         <ol>${tripInstructions}</ol>`
+    document.getElementById("info_section").style.display = "initial";
 }
 
 function showEndText(){

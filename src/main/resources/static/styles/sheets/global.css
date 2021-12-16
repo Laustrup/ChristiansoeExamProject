@@ -10,7 +10,9 @@ header{
 
     background-image: linear-gradient(to bottom right, purple, cyan);
 
-    margin: 30px 400px 20px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+
     padding: 10px;
 
     font-size: 17px;
@@ -43,9 +45,6 @@ body{
 }
 
 main{
-
-    margin: 40px 400px 20px;
-    margin-bottom: 500px;
     width: 1000px;
 
     display: flex;

@@ -29,6 +29,8 @@
 }
 
 .info_section{
+    display: none;
+
     margin: auto;
     margin-top: 1px;
 
