@@ -6,8 +6,8 @@
 
 
     <main>
-        <div id="tourChooser" class="tourChooser">
-            <div class="tourList">
+        <section id="tourChooser" class="tourChooser">
+            <section class="tourList">
                 <table>
                     <thead>
                         <tr>
@@ -23,22 +23,23 @@
                     <button id="selectTourBtn" class="modalBtn">Vælg tur</button>
                     <button id="closeTourChooser" class="modalBtn">Luk</button>
                 </div>
-            </div>
-        </div>
+            </section>
+        </section>
 
         <div id="loadingPrompt" class="tourChooser">
             <h1>Indlæser tur</h1>
         </div>
 
         <section class="flex-container">
-            <div class="instructionFlex">
-                <div id="instructions"></div>
-                <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
-            </div>
             <div id="map" class="map"></div>
 
             <div class="flex-sidebar">
                 <button id="tourBtn" class="tourBtn">Vælg en tur!</button>
+            </div>
+
+            <div class="instructionFlex">
+                <div id="instructions"></div>
+                <button id="arrivedBtn" class="arrivedBtn">Jeg er ankommet</button>
             </div>
         </section>
     </main>

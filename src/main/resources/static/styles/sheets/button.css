@@ -23,12 +23,3 @@ button{
 
     cursor: pointer;
 }
-
-.modalBtnFlex {
-    display: flex;
-    flex-direction: row;
-}
-
-.modalBtn {
-    margin: 5px;
-}
