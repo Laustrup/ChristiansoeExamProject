@@ -2,9 +2,6 @@ package group_g.christiansoeexamproject.utilities;
 
 import group_g.christiansoeexamproject.models.*;
 import group_g.christiansoeexamproject.repositories.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.util.*;
 
 public class Wallet {

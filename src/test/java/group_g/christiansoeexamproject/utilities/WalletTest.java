@@ -69,7 +69,7 @@ class WalletTest {
                         "15.192853298391688|55.32029540616608|Sæl billede|" +
                         "Sæl|Sæl hyl lyd",
 
-                        "Badebro|Dette er en badebro!|15.183442624715434|55.32128710201616||" +
+                        "Badebro|Dette er en badebro|15.183442624715434|55.32128710201616||" +
                         "Sæl|"}, delimiter = '|')
     public void locationTest(String expectedTitle, String expectedReport, double longitude, double latitude,
                              String expectedImages, String expectedAnimals, String expectedSounds) {
