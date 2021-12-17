@@ -2,8 +2,6 @@ package group_g.christiansoeexamproject.controllers;
 
 import group_g.christiansoeexamproject.models.Location;
 import group_g.christiansoeexamproject.models.Tour;
-import group_g.christiansoeexamproject.models.TourLocation;
-import group_g.christiansoeexamproject.repositories.TourRepository;
 import group_g.christiansoeexamproject.utilities.Wallet;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,7 +1,6 @@
 package group_g.christiansoeexamproject.controllers;
 
 import group_g.christiansoeexamproject.models.Location;
-import group_g.christiansoeexamproject.models.Tour;
 import group_g.christiansoeexamproject.repositories.*;
 import group_g.christiansoeexamproject.utilities.Wallet;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,10 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
@@ -51,6 +47,7 @@ class ControllerTest {
 
         // Assert
         assertThat(actual.getStatusCodeValue()).isEqualTo(200);
-        assertThat(actual.getHeaders().getLocation().getPath()).isEqualTo("/location/"+id);
+        assertThat(actual.getBody().getTitle()).isEqualTo(expected.getTitle());
+        assertThat(actual.getBody().getId()).isEqualTo(expected.getId());
     }
 }

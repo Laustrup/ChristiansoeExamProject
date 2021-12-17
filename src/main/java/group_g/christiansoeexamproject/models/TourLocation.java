@@ -1,7 +1,6 @@
 package group_g.christiansoeexamproject.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 
 @Entity
