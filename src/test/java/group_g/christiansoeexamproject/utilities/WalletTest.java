@@ -39,18 +39,13 @@ class WalletTest {
         wallet = Wallet.getWallet();
         wallet.injectRepos(tourRepo,locationRepo,animalRepo,imageRepo,soundRepo,tourLocationRepository);
     }
-    /*
-    @ParameterizedTest
-    @CsvSource(value = "Fra vest til øst|Denne tur er fra vest til øst!|Danmarks østligeste punkt_Badebro",delimiter = '|')
-    public void tourTest(String expectedTitle, String expectedReport, String expectedLocations) {
-        // Arrange
-        String[] locations = expectedLocations.split("_");
-        LinkedList<Location> listOfLocations = new LinkedList();
-        for (int i = 0; i < locations.length;i++) {
-            listOfLocations.add((Location)wallet.getObject(locations[i]));
-        }
 
-        Tour expected = new Tour(expectedTitle,expectedReport,listOfLocations);
+    @ParameterizedTest
+    @CsvSource(value = "Fra vest til øst|Denne tur er fra vest til øst!",delimiter = '|')
+    public void tourTest(String expectedTitle, String expectedReport) {
+        // Arrange
+
+        Tour expected = new Tour(expectedTitle,expectedReport, null);
 
         // Act
         Tour actual = (Tour)wallet.getObject(expectedTitle);
@@ -58,11 +53,7 @@ class WalletTest {
         // Assert
         assertEquals(true,wallet.doesExist(expected.getTitle()));
         assertEquals(expected.getReport(), actual.getReport());
-
-        for (int i = 0; i < expected.getLocations().size(); i++) {
-             assertEquals(expected.getLocations().get(i).getTitle(),actual.getLocations().get(i).getTitle());
-        }
-    }*/
+    }
 
     @ParameterizedTest
     @CsvSource(value = {"Danmarks østligeste punkt|Du kan ikke finde et andet punkt i Danmark der er mere østligt end dette!|" +
