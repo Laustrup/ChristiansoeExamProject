@@ -75,6 +75,7 @@ function chooseTour(){
         if(row.getAttribute("data-selected") === "yes") {
             let id = row.getAttribute("data-id")
             getTour(id)
+            document.getElementById("arrivedBtn").style.display = "initial"
             return
         }
     }
@@ -199,6 +200,7 @@ function makeRouteCache(){
             if(currentStep >= routeList.length){
                 routeList = []
                 showEndText()
+                document.getElementById("arrivedBtn").style.display = "none"
                 return
             }
 

@@ -28,3 +28,7 @@ button{
     width: 120px;
     height: 80px;
 }
+
+.arrivedBtn{
+    display: none;
+}
