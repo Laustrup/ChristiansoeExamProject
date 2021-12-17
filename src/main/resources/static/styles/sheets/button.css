@@ -29,6 +29,10 @@ button{
     height: 80px;
 }
 
+#close_window_button{
+    margin-right: 90%;
+}
+
 .arrivedBtn{
     display: none;
 }
