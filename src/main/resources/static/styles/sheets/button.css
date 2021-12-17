@@ -23,3 +23,8 @@ button{
 
     cursor: pointer;
 }
+
+#close_window_button button{
+    width: 120px;
+    height: 80px;
+}
