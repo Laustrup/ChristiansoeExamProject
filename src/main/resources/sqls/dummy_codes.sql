@@ -45,6 +45,8 @@ INSERT INTO image(file_path, title, image_animal, image_location)
 VALUES ("/images/kongensbastion.jpeg", "Kongens Bastion", null,9);
 INSERT INTO image(file_path, title, image_animal, image_location)
 VALUES ("/images/østligstepunkt.jpeg", "Danmarks østligste punkt", null,1);
+INSERT INTO image(file_path, title, image_animal, image_location)
+VALUES ("/images/seal.jpeg", "Sæl billede", 1,null);
 
 
 /*Sounds*/
