@@ -21,6 +21,7 @@ public class Sound {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="sound_animal")
+    @JsonBackReference
     private Animal animal;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)

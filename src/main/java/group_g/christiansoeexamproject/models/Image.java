@@ -21,7 +21,7 @@ public class Image {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name="image_animal")
-    @JsonManagedReference
+    @JsonBackReference
     private Animal animal;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = true)
