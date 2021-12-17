@@ -4,7 +4,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-
   <head>
 
     <meta charset="UTF-8">
@@ -24,10 +23,14 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
 
     <!-- Head style -->
-    <title th:text="${head_title}"></title>
+    <title th:if="${page_situation eq 'Frontpage'}" th:text="Velkommen til Christiansø"></title>
+    <title th:if="${page_situation eq 'Location'}" id="post_title"></title>
     <link rel="shortcut icon" type="image/PNG" href="../../static/styles/style_images/head_logo.PNG">
 
     <!-- Mapbox JS -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
   </head>
+
+  <script th:if="page_situation" src="../../../static/JSs/head.js"></script>
+
 </html>
