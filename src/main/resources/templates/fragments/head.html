@@ -19,18 +19,15 @@
     <link href="../../static/styles/sheets/post.css" rel="stylesheet">
     <link href="../../static/styles/sheets/tour.css" rel="stylesheet">
     <link href="../../static/styles/sheets/button.css" rel="stylesheet">
-    <link href="../../static/styles/sheets/section.css" rel="stylesheet">
+    <link href="../../static/styles/sheets/frontpage.css" rel="stylesheet">
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet' />
 
     <!-- Head style -->
-    <title th:if="${page_situation eq 'Frontpage'}">Velkommen til Christiansø</title>
-    <title th:if="${page_situation eq 'Location'}" id="post_title"></title>
+    <title>Christiansø</title>
     <link rel="shortcut icon" type="image/PNG" href="../../static/styles/style_images/head_logo.PNG">
 
     <!-- Mapbox JS -->
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
   </head>
-
-  <script th:if="page_situation" src="../../../static/JSs/head.js"></script>
 
 </html>

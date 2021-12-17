@@ -47,23 +47,27 @@ body{
 main{
     width: 1000px;
 
+    /* Order and display */
     display: flex;
     align-items: center;
     justify-content: center;
 
+    /* Background */
     background-image: linear-gradient(to bottom right, cyan, blue);
 
-    /* */
+    /* Border */
     border: 2px solid blue;
     border-radius: 15px;
     box-shadow: 5px 5px gray
 
 }
 
-table, th, td {
-    border: 1px solid black;
-}
+table, th, td {border: 1px solid black;}
 
-ul{
-    list-style: none;
+ul{list-style: none;}
+
+img {
+    max-width: 70%;
+    height: auto;
+    width: auto\9;
 }
