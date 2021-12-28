@@ -28,13 +28,10 @@ button:hover {
     color: green;
 }
 
-#close_window_button button{
-    width: 120px;
-    height: 80px;
-}
-
-#close_window_button{
-    margin-right: 90%;
+.go_back_button{
+    width: 60px;
+    height: 40px;
+    font-size: 9px;
 }
 
 .arrivedBtn{
